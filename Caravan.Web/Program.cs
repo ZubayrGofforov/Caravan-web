@@ -1,10 +1,11 @@
-using Caravan.Api.Configuration.LayerConfigurations;
+using Caravan.Web.Configuration.LayerConfigurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.ConfigureDataAccess(builder.Configuration);
+builder.Services.AddService();
 
 var app = builder.Build();
 

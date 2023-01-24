@@ -7,7 +7,7 @@ using Caravan.Service.Dtos.Trucks;
 using Caravan.Service.Dtos.Users;
 using Caravan.Service.ViewModels;
 
-namespace Caravan.Api.Configuration
+namespace Caravan.Web.Configuration
 {
     public class MappingConfiguration : Profile
     {

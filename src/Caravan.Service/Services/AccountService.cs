@@ -1,5 +1,4 @@
-﻿using Caravan.DataAccess.DbContexts;
-using Caravan.DataAccess.Interfaces.Common;
+﻿using Caravan.DataAccess.Interfaces.Common;
 using Caravan.Domain.Entities;
 using Caravan.Service.Common.Attributes;
 using Caravan.Service.Common.Exceptions;
@@ -10,14 +9,8 @@ using Caravan.Service.Dtos.Common;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
 using Caravan.Service.Interfaces.Security;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.Service.Services
 {
@@ -48,7 +41,7 @@ namespace Caravan.Service.Services
             if (hasherResult)
             {
                 return _authManager.GenerateToken(user);
-                
+
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is wrong!");
 
@@ -112,7 +105,7 @@ namespace Caravan.Service.Services
                 Subject = "Verification code",
                 Body = code.ToString()
             };
-            
+
             await _emailService.SendAsync(message);
         }
 
@@ -135,7 +128,7 @@ namespace Caravan.Service.Services
             _repository.Users.Update(user.Id, user);
 
             var res = await _repository.SaveChangesAsync();
-            
+
             return res > 0;
         }
     }

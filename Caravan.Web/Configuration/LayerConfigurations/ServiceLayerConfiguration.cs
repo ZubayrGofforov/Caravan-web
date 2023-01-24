@@ -6,7 +6,7 @@ using Caravan.Service.Interfaces.Common;
 using Caravan.Service.Interfaces.Security;
 using Caravan.Service.Services;
 using Caravan.Service.Services.Common;
-using System.Runtime.CompilerServices;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Caravan.Web.Configuration.LayerConfigurations
 {
@@ -20,10 +20,13 @@ namespace Caravan.Web.Configuration.LayerConfigurations
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IPaginatorService, PaginatorService>();  
-            services.AddScoped<ITruckService, TruckService>();  
+            services.AddScoped<IPaginatorService, PaginatorService>();
+            services.AddScoped<ITruckService, TruckService>();
             services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddMemoryCache(); 
+            services.AddHttpContextAccessor();
+            services.AddAutoMapper(typeof(MappingConfiguration));
         }
     }
 }

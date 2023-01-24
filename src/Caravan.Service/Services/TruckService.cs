@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
-using Caravan.DataAccess.Migrations;
 using Caravan.Domain.Entities;
-using Caravan.Service.Common.Attributes;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
 using Caravan.Service.Common.Utils;
@@ -13,14 +10,7 @@ using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
 using Caravan.Service.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Math.EC.Rfc7748;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.Service.Services
 {
@@ -31,7 +21,7 @@ namespace Caravan.Service.Services
         private readonly IMapper _mapper;
         private readonly IImageService _imageService;
         private readonly ILocationService _locationService;
-      
+
         public TruckService(IUnitOfWork unitOfWork, IPaginatorService paginatorService, IMapper mapper, IImageService imageService, ILocationService locationService)
         {
             this._unitOfWork = unitOfWork;
@@ -87,7 +77,7 @@ namespace Caravan.Service.Services
             var trucks = await Task.Run(() => _unitOfWork.Trucks.Where(x => x.UserId == HttpContextHelper.UserId).ToListAsync());
             var result = await Task.Run(() => trucks.Where(x => x.Id == HttpContextHelper.UserId)
                                                     .ToList().ConvertAll(x => _mapper.Map<TruckViewModel>(x)));
-            
+
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
             else
@@ -133,21 +123,21 @@ namespace Caravan.Service.Services
                 var res = await _unitOfWork.SaveChangesAsync();
                 return res > 0;
             }
-                throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
+            throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
         }
         public async Task<bool> UpdateAsync(long id, TruckUpdateDto updateDto)
         {
             var truck = await _unitOfWork.Trucks.FindByIdAsync(id);
             if (truck is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
 
-            if(HttpContextHelper.UserId == truck.UserId || HttpContextHelper.UserRole != "User")
+            if (HttpContextHelper.UserId == truck.UserId || HttpContextHelper.UserRole != "User")
             {
                 _unitOfWork.Trucks.TrackingDeteched(truck);
-                truck.Name= updateDto.Name;
+                truck.Name = updateDto.Name;
 
                 truck.TruckNumber = updateDto.TruckNumber;
                 truck.UserId = HttpContextHelper.UserId;
-                truck.Description= updateDto.Description;
+                truck.Description = updateDto.Description;
 
                 if (updateDto.Image is not null)
                 {
@@ -161,7 +151,7 @@ namespace Caravan.Service.Services
                 return result > 0;
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
-            
+
         }
 
         public async Task<bool> UpdateLocationAsync(long id, LocationCreateDto dto)
@@ -169,7 +159,7 @@ namespace Caravan.Service.Services
             var truck = await _unitOfWork.Trucks.FindByIdAsync(id);
             if (truck.UserId == HttpContextHelper.UserId || HttpContextHelper.UserRole != "User")
             {
-                bool res =await _locationService.UpdateAsync(truck.LocationId, dto);
+                bool res = await _locationService.UpdateAsync(truck.LocationId, dto);
                 return res;
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");

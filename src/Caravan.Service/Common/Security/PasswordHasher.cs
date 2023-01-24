@@ -1,13 +1,4 @@
-﻿using BCrypt.Net;
-using Caravan.Service.Interfaces.Security;
-using Org.BouncyCastle.Crypto.Generators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Caravan.Service.Common.Security
+﻿namespace Caravan.Service.Common.Security
 {
     public class PasswordHasher
     {
@@ -22,7 +13,7 @@ namespace Caravan.Service.Common.Security
         public static bool Verify(string password, string salt, string passwordHash)
         {
             string strongpassword = salt + password;
-            var result = BCrypt.Net.BCrypt.Verify(strongpassword,passwordHash);
+            var result = BCrypt.Net.BCrypt.Verify(strongpassword, passwordHash);
             return result;
         }
     }

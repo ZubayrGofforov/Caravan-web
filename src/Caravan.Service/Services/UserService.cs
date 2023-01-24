@@ -2,7 +2,6 @@
 using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
 using Caravan.Domain.Entities;
-using Caravan.Domain.Enums;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
 using Caravan.Service.Common.Utils;
@@ -10,13 +9,7 @@ using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
 using Caravan.Service.ViewModels;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.Service.Services
 {
@@ -35,12 +28,12 @@ namespace Caravan.Service.Services
             this._paginatorService = paginatorService;
             this.appDbContext = appDbContext;
         }
-       
+
 
         public async Task<bool> DeleteAsync(long id)
         {
             var temp = await unitOfWork.Users.FindByIdAsync(id);
-            if(temp is not null)
+            if (temp is not null)
             {
                 unitOfWork.Users.Delete(id);
                 var res = await unitOfWork.SaveChangesAsync();
@@ -62,7 +55,7 @@ namespace Caravan.Service.Services
         {
             var temp = await unitOfWork.Users.FindByIdAsync(id);
             if (temp is not null)
-                 return mapper.Map<UserViewModel>(temp);
+                return mapper.Map<UserViewModel>(temp);
             else throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "User not found");
 
         }
@@ -78,7 +71,7 @@ namespace Caravan.Service.Services
 
         public async Task<bool> UpdateAsync(long id, UserUpdateDto entity)
         {
-            if (id == HttpContextHelper.UserId || HttpContextHelper.UserRole != "User") 
+            if (id == HttpContextHelper.UserId || HttpContextHelper.UserRole != "User")
             {
                 var temp = await appDbContext.Users.FindAsync(id);
                 unitOfWork.Users.TrackingDeteched(temp);

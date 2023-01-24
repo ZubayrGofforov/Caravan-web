@@ -3,11 +3,6 @@ using Caravan.DataAccess.Interfaces;
 using Caravan.DataAccess.Repositories.Common;
 using Caravan.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.DataAccess.Repositories
 {
@@ -18,7 +13,7 @@ namespace Caravan.DataAccess.Repositories
         {
         }
 
-        public async Task<User?> GetByEmailAsync(string email) 
+        public async Task<User?> GetByEmailAsync(string email)
             => await _dbContext.Users.FirstOrDefaultAsync(x => x.Email == email);
-    }   
+    }
 }

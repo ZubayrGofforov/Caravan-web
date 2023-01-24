@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Caravan.Service.Common.Attributes
 {
@@ -16,9 +11,9 @@ namespace Caravan.Service.Common.Attributes
             else
             {
                 string password = value.ToString()!;
-                if(password.Length < 8)
+                if (password.Length < 8)
                     return new ValidationResult("Password must be at least 8 characters!");
-                if(password.Length > 50)
+                if (password.Length > 50)
                     return new ValidationResult("Password must be less than 50 characters!");
 
                 var result = IsStrong(password);

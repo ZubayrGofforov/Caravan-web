@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Caravan.Service.Common.Utils
+﻿namespace Caravan.Service.Common.Utils
 {
     public class PaginationMetaData
     {
@@ -15,5 +9,5 @@ namespace Caravan.Service.Common.Utils
         public int PageSize { get; set; }
         public int TotalItems { get; set; }
     }
-    
+
 }
