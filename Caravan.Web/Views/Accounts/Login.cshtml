@@ -1,0 +1,25 @@
+﻿@using Caravan.Service.Dtos.Accounts;
+@model AccountLoginDto
+@{
+    Layout = "_AccountLayout.cshtml";
+}
+
+<div class="container">
+    <div class="form signin">
+        <h2 class="form__title">Sign In</h2>
+        <div class="form__inputBox">
+            <input type="text" required="required" class="form__input">
+            <i class="fa-regular fa-user"></i>
+            <span class="form__span">Email</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="password" required="required" class="form__input">
+            <i class="fa-solid fa-lock"></i>
+            <span class="form__span">Password</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="submit" value="Login" class="form__input form__submit">
+        </div>
+        <p class="form__text">Not Registered ? <a href="#" class="create">Create an Account</a></p>
+    </div>
+</div>

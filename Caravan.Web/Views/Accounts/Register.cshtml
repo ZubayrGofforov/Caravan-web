@@ -1,0 +1,45 @@
+﻿@using Caravan.Service.Dtos.Accounts;
+@model AccountRegisterDto
+@{
+    Layout = "_AccountLayout.cshtml";
+}
+
+<div class="container">
+    <div class="form signup">
+        <h2 class="form__title">Sign Up</h2>
+        <div class="form__inputBox">
+            <input type="text" required="required" class="form__input">
+            <i class="fa-regular fa-user"></i>
+            <span class="form__span">First Name</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="text" required="required" class="form__input">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="form__span">Last Name</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="text" required="required" class="form__input">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="form__span">Phone number</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="text" required="required" class="form__input">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="form__span">Address</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="text" required="required" class="form__input">
+            <i class="fa-regular fa-envelope"></i>
+            <span class="form__span">Email</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="password" required="required" class="form__input">
+            <i class="fa-solid fa-lock"></i>
+            <span class="form__span">Password</span>
+        </div>
+        <div class="form__inputBox">
+            <input type="submit" value="Create Account" class="form__input form__submit">
+        </div>
+        <p class="form__text">Already member? <a href="#" class="login">Log in</a></p>
+    </div>
+</div>
