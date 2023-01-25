@@ -6,10 +6,10 @@ namespace Caravan.Web.Configuration
 {
     public static class JwtConfiguration
     {
-        public static void ConfigurAuth(this WebApplicationBuilder builder)
+        public static void ConfigureAuth(this IServiceCollection services, IConfiguration configurations)
         {
-            var config = builder.Configuration.GetSection("Jwt");
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            var config = configurations.GetSection("Jwt");
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters()

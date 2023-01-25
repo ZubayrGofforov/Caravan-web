@@ -21,6 +21,8 @@ namespace Caravan.Service.Common.Security
             var claims = new[]
             {
                 new Claim("Id", user.Id.ToString()),
+                new Claim("FirstName", user.FirstName),
+                new Claim("LastName", user.LastName),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             };
