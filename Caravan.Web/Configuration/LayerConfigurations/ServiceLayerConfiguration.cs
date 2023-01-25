@@ -24,6 +24,7 @@ namespace Caravan.Web.Configuration.LayerConfigurations
             services.AddScoped<ITruckService, TruckService>();
             services.AddScoped<ILocationService, LocationService>();
             services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IIdentityService, IdentityService>();
             services.AddMemoryCache(); 
             services.AddHttpContextAccessor();
             services.AddAutoMapper(typeof(MappingConfiguration));
