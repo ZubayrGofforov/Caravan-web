@@ -1,17 +1,11 @@
-﻿using Caravan.Domain.Entities;
-using Caravan.Service.Common.Attributes;
-using System;
-using System.Collections.Generic;
+﻿using Caravan.Service.Common.Attributes;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.Service.Dtos.Users
 {
     public class UserUpdateDto
     {
-        [MaxLength(30),MinLength(2)]
+        [MaxLength(30), MinLength(2)]
         public string FirstName { get; set; } = string.Empty;
 
         [MaxLength(30), MinLength(2)]

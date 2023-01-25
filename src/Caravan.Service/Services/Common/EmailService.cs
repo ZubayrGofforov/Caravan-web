@@ -1,7 +1,7 @@
 ﻿using Caravan.Service.Interfaces.Common;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
-using MailKit.Net.Smtp;
 using MimeKit.Text;
 
 

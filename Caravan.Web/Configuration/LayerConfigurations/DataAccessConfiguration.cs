@@ -3,7 +3,7 @@ using Caravan.DataAccess.Interfaces.Common;
 using Caravan.DataAccess.Repositories.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace Caravan.Api.Configuration.LayerConfigurations
+namespace Caravan.Web.Configuration.LayerConfigurations
 {
     public static class DataAccessConfiguration
     {

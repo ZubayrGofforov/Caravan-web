@@ -1,5 +1,4 @@
-﻿using Caravan.Domain.Common;
-using Caravan.Service.Dtos.Locations;
+﻿using Caravan.Service.Dtos.Locations;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 

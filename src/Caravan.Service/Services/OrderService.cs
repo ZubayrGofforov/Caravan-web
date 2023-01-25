@@ -1,24 +1,15 @@
 ﻿using AutoMapper;
-using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
-using Caravan.Domain.Common;
 using Caravan.Domain.Entities;
-using Caravan.Service.Common.Attributes;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
 using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
-using Caravan.Service.Services.Common;
 using Caravan.Service.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.Service.Services
 {
@@ -54,7 +45,7 @@ namespace Caravan.Service.Services
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Location is invalid");
 
             var resultDelivery = await _locationService.CreateAsync(createDto.TransferLocation);
-            if(resultDelivery.IsSuccessful) order.DeliveryLocationId = resultDelivery.Id;
+            if (resultDelivery.IsSuccessful) order.DeliveryLocationId = resultDelivery.Id;
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Location is invalid");
 
             var r = await Task.Run(() => _unitOfWork.Orders.Add(order));
@@ -67,7 +58,7 @@ namespace Caravan.Service.Services
             var order = await _unitOfWork.Orders.FindByIdAsync(id);
             if (order is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");
 
-            if(!string.IsNullOrEmpty(order.ImagePath))
+            if (!string.IsNullOrEmpty(order.ImagePath))
                 await _imageService.DeleteImageAsync(order.ImagePath);
 
             _unitOfWork.Orders.Delete(id);
@@ -136,7 +127,7 @@ namespace Caravan.Service.Services
             var order = await _unitOfWork.Orders.FindByIdAsync(id);
             if (order is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");
 
-            if(HttpContextHelper.UserId == order.UserId || HttpContextHelper.UserRole != "User")
+            if (HttpContextHelper.UserId == order.UserId || HttpContextHelper.UserRole != "User")
             {
                 _unitOfWork.Orders.TrackingDeteched(order);
 
@@ -162,7 +153,7 @@ namespace Caravan.Service.Services
                 var resDelivery = await _locationService.UpdateAsync(order.DeliveryLocationId, updateDto.TransferLocation);
                 if (resDelivery == false)
                     throw new StatusCodeException(HttpStatusCode.BadRequest, "Transfer location not updated");
-                
+
                 order.LocationName = string.IsNullOrWhiteSpace(updateDto.LocationName) ? order.LocationName : updateDto.LocationName; ;
                 _unitOfWork.Orders.Update(id, order);
                 var result = await _unitOfWork.SaveChangesAsync();

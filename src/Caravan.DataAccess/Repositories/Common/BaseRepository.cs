@@ -1,14 +1,8 @@
 ﻿using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
 using Caravan.Domain.Common;
-using Caravan.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.DataAccess.Repositories.Common
 {
@@ -23,12 +17,12 @@ namespace Caravan.DataAccess.Repositories.Common
             _dbSet = dbContext.Set<T>();
         }
 
-        public virtual T Add(T entity) => _dbSet.Add(entity).Entity ;
+        public virtual T Add(T entity) => _dbSet.Add(entity).Entity;
 
         public virtual void Delete(long id)
         {
             var entity = _dbSet.Find(id);
-            if(entity is not null)
+            if (entity is not null)
                 _dbSet.Remove(entity);
         }
 

@@ -1,14 +1,7 @@
 ﻿using Caravan.Service.Common.Utils;
 using Caravan.Service.Interfaces.Common;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Caravan.Service.Services.Common
 {
@@ -28,7 +21,7 @@ namespace Caravan.Service.Services.Common
                 CurrentPage = pageNumber,
                 PageSize = pageSize,
                 TotalItems = totalItems,
-                TotalPages = (int) Math.Ceiling((double) totalItems / (double)pageSize),
+                TotalPages = (int)Math.Ceiling((double)totalItems / (double)pageSize),
                 HasPrevious = pageNumber > 1
             };
             paginationMetaData.HasNext = paginationMetaData.CurrentPage < paginationMetaData.TotalPages;

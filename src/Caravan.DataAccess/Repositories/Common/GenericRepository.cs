@@ -1,12 +1,7 @@
 ﻿using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
 using Caravan.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Caravan.DataAccess.Repositories.Common
 {
@@ -14,9 +9,9 @@ namespace Caravan.DataAccess.Repositories.Common
         where T : BaseEntity
     {
         public GenericRepository(AppDbContext appDbContext)
-            :base(appDbContext)
+            : base(appDbContext)
         {
-            
+
         }
         public virtual IQueryable<T> GetAll() => _dbSet;
 
