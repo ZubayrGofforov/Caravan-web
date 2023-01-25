@@ -4,22 +4,24 @@
     Layout = "_AccountLayout.cshtml";
 }
 
-<div class="container">
+<div class="card w-450px h-480px mt-20 mb-100" style="margin-left:auto; margin-right:auto;">
     <div class="form signin">
-        <h2 class="form__title">Sign In</h2>
-        <div class="form__inputBox">
-            <input type="text" required="required" class="form__input">
-            <i class="fa-regular fa-user"></i>
-            <span class="form__span">Email</span>
-        </div>
-        <div class="form__inputBox">
-            <input type="password" required="required" class="form__input">
-            <i class="fa-solid fa-lock"></i>
-            <span class="form__span">Password</span>
-        </div>
-        <div class="form__inputBox">
-            <input type="submit" value="Login" class="form__input form__submit">
-        </div>
-        <p class="form__text">Not Registered ? <a href="#" class="create">Create an Account</a></p>
+        <form asp-area="" asp-controller="accounts" asp-action="Login" method="post" >
+            <h2 class="form__title">Sign In</h2>
+            <div class="form__inputBox mt-8" >
+                <label class="required form-label">Email</label>
+                <input type="email" asp-for=Email class="form-control form-control-solid" placeholder="example@gmail.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form__inputBox mt-8">
+                <label class="required form-label">Parol</label>
+                <input type="password" asp-for=Password class="form-control form-control-solid" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mt-10">
+                <input type="submit" class="btn btn-success" style="width:100%;" value="Login" />
+            </div>
+            <p>Not Registered ? <a href="https://localhost:7265/accounts/register" class="create">Create an Account</a></p>
+        </form>
     </div>
 </div>
