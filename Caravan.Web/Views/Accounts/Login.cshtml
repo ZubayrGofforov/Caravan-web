@@ -4,18 +4,18 @@
     Layout = "_AccountLayout.cshtml";
 }
 
-<div class="card w-450px h-480px mt-20 mb-100" style="margin-left:auto; margin-right:auto; box-shadow: 0 0 40px rgba(8,7,16,0.6)">
+<div class="blurred-box w-450px h-480px mt-20 mb-100" style="margin-left:auto; margin-right:auto; box-shadow: 0 0 40px rgba(8,7,16,0.6);">
     <div class="form signin mx-15 mt-5">
         <form asp-area="" asp-controller="accounts" asp-action="Login" method="post" >
             <label class="form-label fs-2">Sign In</label>
             <div class="form__inputBox mt-8 " >
                 <label class="required form-label">Email</label>
-                <input type="email" asp-for=Email class="form-control form-control-solid" placeholder="example@gmail.com" />
+                <input type="email" asp-for=Email class="form-control form-control-solid bg-secondary" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form__inputBox mt-8 ">
                 <label class="required form-label">Parol</label>
-                <input type="password" asp-for=Password class="form-control form-control-solid" />
+                <input type="password" asp-for=Password class="form-control form-control-solid bg-secondary" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="mt-10">
