@@ -18,16 +18,13 @@ namespace Caravan.Service.Services
     {
         private readonly IUnitOfWork _repository;
         private readonly IAuthManager _authManager;
-        private readonly IImageService _image;
         private readonly IMemoryCache _memoryCache;
         private readonly IEmailService _emailService;
-        IdentitySingelton identity = new IdentitySingelton();
 
-        public AccountService(IUnitOfWork repository, IAuthManager authManager, IImageService image, IMemoryCache memoryCache, IEmailService emailService)
+        public AccountService(IUnitOfWork repository, IAuthManager authManager, IMemoryCache memoryCache, IEmailService emailService)
         {
             _repository = repository;
             _authManager = authManager;
-            _image = image;
             _memoryCache = memoryCache;
             _emailService = emailService;
         }
@@ -41,7 +38,6 @@ namespace Caravan.Service.Services
             if (hasherResult)
             {
                 return _authManager.GenerateToken(user);
-
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is wrong!");
 
