@@ -22,13 +22,14 @@ app.UseRouting();
 
 app.UseStatusCodePages(async context =>
 {
-    if(context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+    if (context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
     {
         context.HttpContext.Response.Redirect("accounts/login");
     }
 });
 
 app.UseMiddleware<TokenRedirectMiddleware>();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
