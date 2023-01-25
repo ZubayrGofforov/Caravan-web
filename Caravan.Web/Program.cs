@@ -1,4 +1,6 @@
 using Caravan.Web.Configuration.LayerConfigurations;
+using Caravan.Web.Middlewares;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -17,6 +19,16 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseStatusCodePages(async context =>
+{
+    if(context.HttpContext.Response.StatusCode == (int)HttpStatusCode.Unauthorized)
+    {
+        context.HttpContext.Response.Redirect("accounts/login");
+    }
+});
+
+app.UseMiddleware<TokenRedirectMiddleware>();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
