@@ -1,17 +1,25 @@
-﻿using Caravan.Service.ViewModels;
+﻿using Caravan.Service.Interfaces.Common;
+using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.ViewComponents;
 
-public class IdentityViewComponents : ViewComponent
+public class IdentityViewComponent : ViewComponent
 {
-    public async Task<IViewComponentResult> InvokeAsync()
+    private readonly IIdentityService _identityService;
+
+    public IdentityViewComponent(IIdentityService identityService)
+    {
+        this._identityService = identityService;
+    }
+    public IViewComponentResult Invoke()
     {
         UserViewModel model = new UserViewModel()
         {
-            FirstName = "Fazliddin",
-            LastName = "Mustafoyev",
-
+            Id = _identityService.Id!.Value,
+            Email = _identityService.Email,
+            FirstName = _identityService.FirstName,
+            LastName = _identityService.LastName,
         };
         return View(model);
     }

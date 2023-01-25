@@ -1,4 +1,5 @@
 ﻿using Caravan.Service.Common.Exceptions;
+using Caravan.Service.Common.Helpers;
 using Caravan.Service.Dtos.Accounts;
 using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -40,10 +41,7 @@ public class AccountsController : Controller
 
 
     [HttpGet("login")]
-    public ViewResult Login()
-    {
-        return View("Login");
-    }
+    public ViewResult Login() => View("Login");
 
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync(AccountLoginDto accountLoginDto)
@@ -71,5 +69,15 @@ public class AccountsController : Controller
             }
         }
         else return Login();
+    }
+
+    [HttpGet("logout")]
+    public IActionResult LogOut()
+    {
+        HttpContext.Response.Cookies.Append("X-Access-Token", "", new CookieOptions()
+        {
+            Expires = TimeHelper.GetCurrentServerTime().AddDays(-1)
+        });
+        return RedirectToAction("Index", "Home", new { area = "" });
     }
 }
