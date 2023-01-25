@@ -38026,7 +38026,14 @@ a {
     background-color: #F1FAFF;
     color: #00B2FF;
 }
-
+.blurred-box {
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
     .menu-show-bg-light-primary .menu-item.here > .menu-link .menu-title, .menu-show-bg-light-primary .menu-item.show > .menu-link .menu-title {
         color: #00B2FF;
     }
