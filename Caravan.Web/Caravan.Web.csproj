@@ -22,4 +22,9 @@
     <ProjectReference Include="..\src\Caravan.Service\Caravan.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\media\avatars\" />
+    <Folder Include="wwwroot\media\images\" />
+  </ItemGroup>
+
 </Project>

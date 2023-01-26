@@ -2440,6 +2440,7 @@ progress {
 }
 
 .form-label {
+    color: #ffffff;
     margin-bottom: 0.5rem;
     font-size: 1.05rem;
     font-weight: 500;
@@ -2479,7 +2480,7 @@ progress {
     font-size: 1.1rem;
     font-weight: 500;
     line-height: 1.5;
-    color: #181C32;
+    color: #ffffff;
     background-color: #ffffff;
     background-clip: padding-box;
     border: 1px solid #E4E6EF;
@@ -50583,3 +50584,5 @@ body {
         padding: 15px 0;
     }
 }
+
+
