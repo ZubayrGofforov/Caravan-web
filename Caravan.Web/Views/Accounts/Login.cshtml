@@ -4,24 +4,26 @@
     Layout = "_AccountLayout.cshtml";
 }
 
-<div class="blurred-box w-450px h-480px mt-20 mb-100" style="margin-left:auto; margin-right:auto; box-shadow: 0 0 40px rgba(8,7,16,0.6);">
-    <div class="form signin mx-15 mt-5">
-        <form asp-area="" asp-controller="accounts" asp-action="Login" method="post" >
+<div class="card w-500px h-470px mt-20 mb-100" style="backdrop-filter: blur(15px);  background-color: rgba(255,255,255,0.13); margin-left:auto; margin-right:auto; box-shadow: 0 0 40px rgba(8,7,16,0.6);">
+    <div class="py-10 pe-10 px-10">
+        <form asp-controller="accounts" asp-action="Login" method="post" >
             <label class="form-label fs-2">Sign In</label>
-            <div class="form__inputBox mt-8 " >
+            <div class="form__inputBox mt-5 " >
                 <label class="required form-label">Email</label>
-                <input type="email" asp-for=Email class="form-control form-control-solid bg-secondary" />
+                <input type="email" asp-for=Email class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form__inputBox mt-8 ">
-                <label class="required form-label">Parol</label>
-                <input type="password" asp-for=Password class="form-control form-control-solid bg-secondary" />
+            <div class="form__inputBox mt-5 ">
+                <label class="required form-label">Password</label>
+                <input type="password" asp-for=Password class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="mt-10">
-                <input type="submit" class="btn btn-success" style="width:100%;" value="Login" />
+            <div class="mt-20">
+                <input type="submit" class="btn btn-primary" style="width:100%;" value="Sign In" />
             </div>
-            <p class="mt-5">Not Registered ? <a href="https://localhost:7265/accounts/register" class="create">Create an Account</a></p>
+            <div class="mt-8 mb-10 btn btn-secondary" style="width:100%;">
+                <a href="https://localhost:7265/accounts/register">Sign Up</a>
+            </div>
         </form>
     </div>
 </div>

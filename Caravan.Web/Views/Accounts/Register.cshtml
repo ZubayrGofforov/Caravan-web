@@ -38,8 +38,8 @@
                 <input type="password" asp-for=Password class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-check form-check-custom form-check-solid mt-8">
-                <input class="form-check-input" type="checkbox" value="" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+            <div class="form-check form-check-custom form-check-solid mt-5 ">
+                <input class="form-check-input" type="checkbox" value="" />
                 <label class="form-check-label" for="flexCheckDefault" style="color: #ffffff">
                     I <a href="www.google.com">agree</a> to the terms of use!
                 </label>
@@ -47,8 +47,8 @@
             <div class="mt-8">
                 <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="Sign Up" />
             </div>
-            <div class="mt-8">
-                <input type="submit" class="btn btn-secondary rounded hover-scale" style="width:100%;" value="Sign Up" />
+            <div class="mt-8 btn btn-secondary mb-8" style="width:100%;">
+                <a href="https://localhost:7265/accounts/login">Sign In</a>
             </div>
         </form>
     </div>
