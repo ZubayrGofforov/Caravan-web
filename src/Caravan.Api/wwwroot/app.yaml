@@ -1,3 +1,0 @@
-﻿runtime: custom
-env: flex
-entrypoint: dotnet Caravan.dll
