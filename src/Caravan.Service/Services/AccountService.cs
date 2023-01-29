@@ -40,7 +40,6 @@ namespace Caravan.Service.Services
                 return _authManager.GenerateToken(user);
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is wrong!");
-
         }
 
         public async Task<bool> PasswordUpdateAsync(PasswordUpdateDto passwordUpdateDto)
@@ -75,7 +74,7 @@ namespace Caravan.Service.Services
                 throw new StatusCodeException(HttpStatusCode.Conflict, "Email alredy exist");
 
             var phoneNumberCheck = await _repository.Users.FirstOrDefaultAsync(x => x.PhoneNumber == registerDto.PhoneNumber);
-            if (emailcheck is not null)
+            if (phoneNumberCheck is not null)
                 throw new StatusCodeException(HttpStatusCode.Conflict, "Phone number alredy exist");
 
             var hasherResult = PasswordHasher.Hash(registerDto.Password);
