@@ -14,6 +14,7 @@ using System.Net;
 using Caravan.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Caravan.DataAccess.Repositories.Common;
+using Caravan.Service.Common.Helpers;
 
 namespace Caravan.Service.Services
 {
@@ -66,9 +67,16 @@ namespace Caravan.Service.Services
             var admin = await _repository.Administrators.FindByIdAsync(id);
             if (admin is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Admin is not found");
+            _repository.Administrators.TrackingDeteched(admin);
             var res = _mapper.Map<Administrator>(admin);
-             _repository.Administrators.TrackingDeteched(res);
-            _repository.Administrators.Update(id,_mapper.Map<Administrator>(dto));
+            res.FirstName= dto.FirstName;
+            res.LastName = dto.LastName;
+            res.ImagePath = dto.ImagePath;
+            res.PhoneNumber = dto.PhoneNumber;
+            res.PassportNumber = dto.PassportNumber;
+            res.PassportSeria= dto.PassportSeria;
+            res.UpdatedAt = TimeHelper.GetCurrentServerTime();
+            _repository.Administrators.Update(id,res);
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
