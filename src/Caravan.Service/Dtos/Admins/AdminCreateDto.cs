@@ -17,6 +17,7 @@ namespace Caravan.Service.Dtos.Admins
         public string Email { get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
+        
         public string ImagePath { get; set; } = string.Empty;
 
         public string PassportSeria { get; set; } = string.Empty;
