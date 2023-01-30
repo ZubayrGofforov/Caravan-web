@@ -11,8 +11,6 @@ namespace Caravan.Service.Dtos.Orders
         [MaxLength(50), MinLength(3)]
         public string Name { get; set; } = string.Empty;
 
-        public double? Price { get; set; }
-
         [MaxFileSize(2)]
         [AllowedFiles(new string[] { ".jpg", ".png", ".jpeg", ".svg", ".webp" })]
         public IFormFile? Image { get; set; }
@@ -33,5 +31,7 @@ namespace Caravan.Service.Dtos.Orders
         public LocationCreateDto TransferLocation { get; set; } = default!;
 
         public string? LocationName { get; set; }
+
+        public double? Price { get; set; }
     }
 }
