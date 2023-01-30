@@ -26,6 +26,7 @@ namespace Caravan.Web.Configuration
             CreateMap<OrderUpdateDto, Order>();
             CreateMap<TruckUpdateDto, Truck>();
             CreateMap<Administrator, AdminCreateDto>().ReverseMap();
+            CreateMap<Administrator, AdminViewModel>().ReverseMap();
         }
     }
 }
