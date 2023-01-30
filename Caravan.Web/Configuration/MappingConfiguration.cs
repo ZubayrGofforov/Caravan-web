@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Caravan.Domain.Common;
 using Caravan.Domain.Entities;
+using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Dtos.Locations;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Dtos.Trucks;
@@ -24,6 +25,7 @@ namespace Caravan.Web.Configuration
             CreateMap<TruckStatusDto, Truck>().ReverseMap();
             CreateMap<OrderUpdateDto, Order>();
             CreateMap<TruckUpdateDto, Truck>();
+            CreateMap<Administrator, AdminCreateDto>().ReverseMap();
         }
     }
 }
