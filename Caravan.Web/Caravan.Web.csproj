@@ -27,4 +27,8 @@
     <Folder Include="wwwroot\media\images\" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Folder Include="Areas\Administrator\Models\" />
+	</ItemGroup>
+
 </Project>
