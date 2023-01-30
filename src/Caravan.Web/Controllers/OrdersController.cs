@@ -1,11 +1,13 @@
 ﻿using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Controllers;
 
 [Route("orders")]
+[Authorize(Roles ="User")]
 public class OrdersController : Controller
 {
     private readonly IOrderService _orderService;
@@ -33,8 +35,8 @@ public class OrdersController : Controller
         return View("OrderCreate");
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateAsync(OrderCreateDto createDto)
+    [HttpPost("create")]
+    public async Task<IActionResult> CreateAsync([FromForm] OrderCreateDto createDto)
     {
         if (ModelState.IsValid)
         {
