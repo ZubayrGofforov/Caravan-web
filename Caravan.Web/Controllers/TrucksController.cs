@@ -27,11 +27,21 @@ public class TrucksController : Controller
         return View(truck);
     }
 
+    // Davomi yoziladi!
+    [HttpPost("truckId")]
+    public async Task<IActionResult> DeleteAsync(long truckId)
+    {
+        var truck = await _service.DeleteAsync(truckId);
+        if (truck) return RedirectToAction("Index", "Trucks", new { area = "" });
+        else throw new Exception();
+    }
+
     [HttpGet("Create")]
     public ViewResult Create()
     {
         return View("TruckCreate");
     }
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync(TruckCreateDto createDto)
     {
