@@ -27,6 +27,7 @@ public class TrucksController : Controller
         return View(truck);
     }
 
+
     // Davomi yoziladi!
     [HttpPost("truckId")]
     public async Task<IActionResult> DeleteAsync(long truckId)
@@ -35,6 +36,7 @@ public class TrucksController : Controller
         if (truck) return RedirectToAction("Index", "Trucks", new { area = "" });
         else throw new Exception();
     }
+
 
     [HttpGet("Create")]
     public ViewResult Create()
