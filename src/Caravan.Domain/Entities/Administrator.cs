@@ -1,4 +1,5 @@
 ﻿using Caravan.Domain.Common;
+using Caravan.Domain.Enums;
 
 namespace Caravan.Domain.Entities
 {
@@ -21,5 +22,7 @@ namespace Caravan.Domain.Entities
         public string PassportSeria { get; set; } = string.Empty;
 
         public string PassportNumber { get; set; } = string.Empty;
+
+        public UserRole Role { get; set; } = UserRole.Admin;
     }
 }
