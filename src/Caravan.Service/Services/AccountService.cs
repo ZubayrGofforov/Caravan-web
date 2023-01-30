@@ -1,10 +1,12 @@
-﻿using Caravan.DataAccess.Interfaces.Common;
+﻿using AutoMapper;
+using Caravan.DataAccess.Interfaces.Common;
 using Caravan.Domain.Entities;
 using Caravan.Service.Common.Attributes;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
 using Caravan.Service.Common.Security;
 using Caravan.Service.Dtos.Accounts;
+using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Dtos.Common;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
@@ -20,13 +22,35 @@ namespace Caravan.Service.Services
         private readonly IAuthManager _authManager;
         private readonly IMemoryCache _memoryCache;
         private readonly IEmailService _emailService;
+        private readonly IMapper _mapper;
 
-        public AccountService(IUnitOfWork repository, IAuthManager authManager, IMemoryCache memoryCache, IEmailService emailService)
+        public AccountService(IUnitOfWork repository, IAuthManager authManager, IMemoryCache memoryCache, IEmailService emailService,IMapper mapper)
         {
             _repository = repository;
             _authManager = authManager;
             _memoryCache = memoryCache;
             _emailService = emailService;
+            _mapper = mapper;
+        }
+
+        public async Task<bool> AdminRegisterAsync(AdminCreateDto dto)
+        {
+            var emailcheck = await _repository.Administrators.FirstOrDefaultAsync(x => x.Email == dto.Email);
+            if (emailcheck is not null)
+                throw new StatusCodeException(HttpStatusCode.Conflict, "Email alredy exist");
+
+            var phoneNumberCheck = await _repository.Administrators.FirstOrDefaultAsync(x => x.PhoneNumber == dto.PhoneNumber);
+            if (phoneNumberCheck is not null)
+                throw new StatusCodeException(HttpStatusCode.Conflict, "Phone number alredy exist");
+            var hashresult = PasswordHasher.Hash(dto.Password);
+            var admin = _mapper.Map<Administrator>(dto);
+            admin.PasswordHash = hashresult.passwordHash;
+            admin.Salt = hashresult.salt;
+            admin.CreatedAt = TimeHelper.GetCurrentServerTime();
+            admin.UpdatedAt = TimeHelper.GetCurrentServerTime();
+            _repository.Administrators.Add(admin);
+            var result = await _repository.SaveChangesAsync();
+            return result > 0;
         }
 
         public async Task<string> LoginAsync(AccountLoginDto loginDto)
