@@ -1,3 +1,4 @@
+using Caravan.Service.Common.Helpers;
 using Caravan.Web.Configuration.LayerConfigurations;
 using Caravan.Web.Middlewares;
 using System.Net;
@@ -29,6 +30,10 @@ app.UseStatusCodePages(async context =>
 });
 
 app.UseMiddleware<TokenRedirectMiddleware>();
+
+if (app.Services.GetService<IHttpContextAccessor>() != null)
+    HttpContextHelper.Accessor = app.Services.GetRequiredService<IHttpContextAccessor>();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
