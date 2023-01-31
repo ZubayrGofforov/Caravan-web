@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\media\images\NewFolder\**" />
+    <Content Remove="wwwroot\media\images\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\media\images\NewFolder\**" />
+    <None Remove="wwwroot\media\images\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\admin\site.min.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -20,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\media\avatars\" />
-    <Folder Include="wwwroot\media\images\NewFolder\" />
   </ItemGroup>
 
 	<ItemGroup>

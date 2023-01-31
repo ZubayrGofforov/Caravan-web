@@ -1,23 +1,47 @@
 ﻿using Caravan.Service.Common.Utils;
+using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Tsp;
 
-namespace Caravan.Web.Areas.Administrator.Controllers
+namespace Caravan.Web.Areas.Administrator.Controllers;
+[Route("orders")]
+public class OrdersController : BaseController
 {
-    public class OrdersController : BaseController
-    {
-        private readonly IOrderService _orderService;
-        private readonly int _pageSize = 20;
+    private readonly IOrderService _orderService;
+    private readonly int _pageSize = 20;
 
-        public OrdersController(IOrderService orderService)
+    public OrdersController(IOrderService orderService)
+    {
+        this._orderService = orderService;
+    }
+
+    [HttpGet("create")]
+    public ViewResult Create() => View("OrderCreate");
+
+    [HttpPost]
+    public async Task<IActionResult> CreateAsync([FromForm] OrderCreateDto orderCreateDto)
+    {
+        if (ModelState.IsValid)
         {
-            this._orderService = orderService;
+            var order = await _orderService.CreateAsync(orderCreateDto);
+            if (order)
+                return RedirectToAction("Index", "Orders", new { area = "" });
+            else
+                return Create();
         }
-        public async Task<ViewResult> Index(int page = 1)
-        {
-            var orders = await _orderService.GetAllAsync(new PaginationParams(page, _pageSize));
-            return View(orders);
-        }
+        else return Create();
+    }
+
+    public async Task<ViewResult> Index(int page = 1)
+    {
+        var orders = await _orderService.GetAllAsync(new PaginationParams(page, _pageSize));
+        return View(orders);
+    }
+
+    [HttpGet("orderId")]
+    public async Task<ViewResult> GetAsync(long orderId)
+    {
+        var order = await _orderService.GetAsync(orderId);
+        return View(order);
     }
 }
