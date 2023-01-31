@@ -21,7 +21,7 @@ public class AccountsController : BaseController
         return View("AdminRegister");
     }
     [HttpPost("adminRegister")]
-    public async Task<IActionResult> AdminRegisterAsync(AdminCreateDto adminCreateDto)
+    public async Task<IActionResult> AdminRegisterAsync([FromForm] AdminCreateDto adminCreateDto)
     {
         if(ModelState.IsValid)
         {

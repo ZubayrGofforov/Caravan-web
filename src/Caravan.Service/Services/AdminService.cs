@@ -68,7 +68,7 @@ namespace Caravan.Service.Services
             var res = _mapper.Map<Administrator>(admin);
             res.FirstName= dto.FirstName;
             res.LastName = dto.LastName;
-            res.ImagePath = dto.ImagePath;
+            res.ImagePath = await _imageService.SaveImageAsync(dto.Image!);
             res.PhoneNumber = dto.PhoneNumber;
             res.PassportNumber = dto.PassportNumber;
             res.PassportSeria= dto.PassportSeria;
