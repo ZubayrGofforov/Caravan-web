@@ -1,0 +1,72 @@
+﻿@using Caravan.Service.Dtos.Trucks;
+@model TruckCreateDto
+
+<div class="card w-500px h-630px mt-10 mb-10" style="border: 2px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); margin-left:auto; margin-right:auto; background-color: rgba(255,255,255,0.13); box-shadow: 0 0 40px rgba(8,7,16,0.6);">
+    <div class="py-10 pe-10 px-10">
+        <form asp-controller="trucks" enctype="multipart/form-data" asp-action="Create" method="post">
+            <label class="form-label fs-2 text-primary" style="">Truck Create</label>
+            <div class="mt-5">
+                <label class="required form-label text-primary">Truck Name</label>
+                <input type="text" asp-for=Name class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-primary">Image</label>
+                <input type="file" asp-for=Image class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-primary">Truck number</label>
+                <input type="text" asp-for=TruckNumber class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="TruckNumber" class="text-danger"></span>
+            </div>
+            <div class="mt-5">
+                <label class="required form-label text-primary">Truck Description</label>
+                <input type="text" asp-for=Description class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-primary">Max load</label>
+                <input type="number" asp-for=MaxLoad class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="MaxLoad" class="text-danger"></span>
+            </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-primary">Truck Location</label>
+                <input type="text" asp-for=LocationName class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="LocationName" class="text-danger"></span>
+            </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-primary">Truck.Latitude</label>
+                <input type="double" asp-for=TruckLocation.Latitude class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="TruckLocation.Latitude" class="text-danger"></span>
+            </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-primary">Truck.Longitude</label>
+                <input type="double" asp-for=TruckLocation.Longitude class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <span asp-validation-for="TruckLocation.Longitude" class="text-danger"></span>
+            </div>
+
+            
+            <select class="form-select" type="radio" asp-for=IsEmpty name="isEmpty" id="isEmpty">
+                <option asp-for=IsEmpty value="true">Empty</option>
+                <option asp-for=IsEmpty value="false">Not empty</option>
+            </select>
+
+            <div class="form-check form-check-custom form-check-solid mt-5 ">
+                <input class="form-check-input" type="checkbox" value="" />
+                <label class="form-check-label text-primary" for="flexCheckDefault" style="color: #ffffff">
+                    I <a href="www.google.com">agree</a> to the terms of use!
+                </label>
+            </div>
+            <div class="mt-8">
+                <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="Create" />
+            </div>
+        </form>
+    </div>
+</div>

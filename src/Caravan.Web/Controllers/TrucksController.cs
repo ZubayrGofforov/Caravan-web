@@ -44,7 +44,7 @@ public class TrucksController : Controller
         return View("TruckCreate");
     }
 
-    [HttpPost]
+    [HttpPost("Create")]
     public async Task<IActionResult> CreateAsync(TruckCreateDto createDto)
     {
         if (ModelState.IsValid)
