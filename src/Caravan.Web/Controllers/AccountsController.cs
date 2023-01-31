@@ -9,6 +9,7 @@ namespace Caravan.Web.Controllers;
 public class AccountsController : Controller
 {
     private readonly IAccountService _service;
+
     public AccountsController(IAccountService accountService)
     {
         this._service = accountService;

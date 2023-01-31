@@ -18,6 +18,7 @@ namespace Caravan.Web.Configuration.LayerConfigurations
             services.AddScoped<IImageService, ImageService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthManager, AuthManager>();
+            services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaginatorService, PaginatorService>();

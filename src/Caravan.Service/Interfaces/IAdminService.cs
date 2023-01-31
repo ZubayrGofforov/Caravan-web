@@ -1,11 +1,6 @@
-﻿using Caravan.Domain.Entities;
-using Caravan.Service.Common.Utils;
+﻿using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Admins;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Caravan.Service.ViewModels;
 
 namespace Caravan.Service.Interfaces
 {
