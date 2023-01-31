@@ -23,7 +23,7 @@ public class OrdersController : BaseController
     {
         if (ModelState.IsValid)
         {
-            var order = await _orderService.CreateAsync(orderCreateDto);
+            bool order = await _orderService.CreateAsync(orderCreateDto);
             if (order)
                 return RedirectToAction("Index", "Orders", new { area = "" });
             else
