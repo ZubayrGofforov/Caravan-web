@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using Caravan.DataAccess.Interfaces.Common;
+using Caravan.Domain.Entities;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Caravan.Service.ViewModels;
 using System.Net;
 using Caravan.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -68,6 +65,7 @@ namespace Caravan.Service.Services
             if (admin is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Admin is not found");
             _repository.Administrators.TrackingDeteched(admin);
+ 
             admin.FirstName= dto.FirstName;
             admin.LastName = dto.LastName;
             admin.ImagePath = dto.ImagePath;
@@ -76,6 +74,7 @@ namespace Caravan.Service.Services
             admin.PassportSeria= dto.PassportSeria;
             admin.UpdatedAt = TimeHelper.GetCurrentServerTime();
             _repository.Administrators.Update(id,admin);
+
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
