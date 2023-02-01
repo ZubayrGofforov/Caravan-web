@@ -4,7 +4,8 @@ using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
-[Route("adminorders")]
+
+[Route("adminOrders")]
 public class OrdersController : BaseController
 {
     private readonly IOrderService _orderService;

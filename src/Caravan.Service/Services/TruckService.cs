@@ -133,11 +133,13 @@ namespace Caravan.Service.Services
             if (HttpContextHelper.UserId == truck.UserId || HttpContextHelper.UserRole != "User")
             {
                 _unitOfWork.Trucks.TrackingDeteched(truck);
-                truck.Name = updateDto.Name;
-
-                truck.TruckNumber = updateDto.TruckNumber;
+                if(updateDto.Name is not null)
+                    truck.Name = updateDto.Name;
+                if (updateDto.TruckNumber is not null)
+                    truck.TruckNumber = updateDto.TruckNumber;
                 truck.UserId = HttpContextHelper.UserId;
-                truck.Description = updateDto.Description;
+                if (updateDto.Description is not null)
+                    truck.Description = updateDto.Description;
 
                 if (updateDto.Image is not null)
                 {
