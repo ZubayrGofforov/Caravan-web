@@ -10,6 +10,7 @@ public class HttpContextHelper
     public static IHeaderDictionary ResponseHeaders => Response.Headers;
 
     public static HttpContext HttpContext => Accessor?.HttpContext;
+    
     public static long UserId => GetUserId();
 
     public static string UserRole => HttpContext?.User.FindFirst("http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;

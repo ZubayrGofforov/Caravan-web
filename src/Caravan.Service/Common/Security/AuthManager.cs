@@ -11,12 +11,13 @@ namespace Caravan.Service.Common.Security
     public class AuthManager : IAuthManager
     {
         private readonly IConfiguration _config;
+        
         public AuthManager(IConfiguration config)
         {
             _config = config.GetSection("Jwt");
         }
 
-        public string GenerateToken(User user)
+        public virtual string GenerateToken(User user)
         {
             var claims = new[]
             {
