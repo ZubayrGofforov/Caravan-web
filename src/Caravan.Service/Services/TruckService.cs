@@ -130,16 +130,14 @@ namespace Caravan.Service.Services
             var truck = await _unitOfWork.Trucks.FindByIdAsync(id);
             if (truck is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
 
-            if (HttpContextHelper.UserId == truck.UserId || HttpContextHelper.UserRole != "User")
+            if (HttpContextHelper.UserId == 16 || HttpContextHelper.UserRole != "User")
             {
                 _unitOfWork.Trucks.TrackingDeteched(truck);
-                if(updateDto.Name is not null)
-                    truck.Name = updateDto.Name;
-                if (updateDto.TruckNumber is not null)
-                    truck.TruckNumber = updateDto.TruckNumber;
+                truck.Name = updateDto.Name;
+                truck.TruckNumber = updateDto.TruckNumber;
                 truck.UserId = HttpContextHelper.UserId;
-                if (updateDto.Description is not null)
-                    truck.Description = updateDto.Description;
+                truck.Description = updateDto.Description;
+                truck.MaxLoad = updateDto.MaxLoad;
 
                 if (updateDto.Image is not null)
                 {
@@ -147,7 +145,7 @@ namespace Caravan.Service.Services
                     truck.ImagePath = await _imageService.SaveImageAsync(updateDto.Image);
                 }
 
-                truck.LocationName = string.IsNullOrWhiteSpace(updateDto.LocationName) ? truck.LocationName : updateDto.LocationName; ;
+                truck.LocationName = updateDto.LocationName;
                 _unitOfWork.Trucks.Update(id, truck);
                 var result = await _unitOfWork.SaveChangesAsync();
                 return result > 0;

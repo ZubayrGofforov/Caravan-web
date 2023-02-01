@@ -23,6 +23,5 @@ namespace Caravan.Domain.Entities
 
         public string PassportNumber { get; set; } = string.Empty;
 
-        public UserRole Role { get; set; } = UserRole.Admin;
     }
 }

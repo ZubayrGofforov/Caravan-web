@@ -1,6 +1,8 @@
-﻿using Caravan.Service.Common.Utils;
+﻿using AutoMapper;
+using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Trucks;
 using Caravan.Service.Interfaces;
+using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Controllers;
@@ -10,9 +12,12 @@ public class TrucksController : Controller
 {
     private readonly ITruckService _service;
     private readonly int _pageSize = 20;
-    public TrucksController(ITruckService service)
+    private readonly IMapper _mapper;
+    public TrucksController(ITruckService service, IMapper _mapper)
     {
         this._service = service;
+        this._mapper = _mapper;
+
     }
     public async Task<ViewResult> GetAllAsync(int page = 1)
     {
@@ -60,17 +65,31 @@ public class TrucksController : Controller
     }
 
     [HttpGet("Update")]
-    public ViewResult Update()
+    public async Task<IActionResult> UpdateRedirectAsync(long id)
     {
-        return View("TruckUpdate");
+        var truck = await _service.GetAsync(id);
+        truck.Id = id;
+        var dto = new TruckUpdateDto()
+        {
+            Id = id,
+            Name = truck.Name,
+            Description = truck.Description,
+            TruckNumber = truck.TruckNumber,
+            MaxLoad = truck.MaxLoad,
+            LocationName = truck.LocationName
+        };
+        ViewBag.truckId = id;
+        return View("Update", dto);
     }
 
     [HttpPost("Update")]
-    public async Task<IActionResult> UpdateAsync(TruckUpdateDto updateDto)
+    public async Task<IActionResult> UpdateAsync(long id, TruckUpdateDto updateDto)
     {
-        var res = await _service.UpdateAsync(1, updateDto);
+        var res = await _service.UpdateAsync(id,updateDto);
         if (res)
             return RedirectToAction("Index", "Trucks", new { area = "" });
-        else return Update();
+
+        else return  await UpdateRedirectAsync(id);
     }
+    
 }
