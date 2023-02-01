@@ -65,13 +65,16 @@ namespace Caravan.Service.Services
             if (admin is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Admin is not found");
             _repository.Administrators.TrackingDeteched(admin);
+ 
             admin.FirstName= dto.FirstName;
             admin.LastName = dto.LastName;
+            admin.ImagePath = dto.ImagePath;
             admin.PhoneNumber = dto.PhoneNumber;
             admin.PassportNumber = dto.PassportNumber;
             admin.PassportSeria= dto.PassportSeria;
             admin.UpdatedAt = TimeHelper.GetCurrentServerTime();
             _repository.Administrators.Update(id,admin);
+
             var result = await _repository.SaveChangesAsync();
             return result > 0;
         }
