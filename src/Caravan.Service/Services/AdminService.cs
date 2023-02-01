@@ -68,7 +68,7 @@ namespace Caravan.Service.Services
  
             admin.FirstName= dto.FirstName;
             admin.LastName = dto.LastName;
-            admin.ImagePath = dto.ImagePath;
+            admin.ImagePath = await _imageService.SaveImageAsync(dto.Image!);
             admin.PhoneNumber = dto.PhoneNumber;
             admin.PassportNumber = dto.PassportNumber;
             admin.PassportSeria= dto.PassportSeria;
