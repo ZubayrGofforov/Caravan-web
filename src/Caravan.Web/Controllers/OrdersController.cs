@@ -22,7 +22,7 @@ public class OrdersController : Controller
         return View("Index", orders);
     }
 
-    [HttpGet("orderId")]
+    [HttpGet("{orderId}")]
     public async Task<ViewResult> GetAsync(long orderId)
     {
         var product = await _orderService.GetAsync(orderId);
@@ -48,5 +48,20 @@ public class OrdersController : Controller
             else return Create();
         }
         else return Create();
+    }       
+
+    [HttpGet("update")]
+    public ViewResult Update() => View("../Orders/OrderUpdate");
+
+    [HttpPost("update")]
+    public async Task<IActionResult> UpdateAsync([FromForm] OrderUpdateDto orderUpdateDto)
+    {
+        if (ModelState.IsValid)
+        {
+            var order = await _orderService.UpdateAsync(1, orderUpdateDto);
+            if (order) return RedirectToAction("Index", "Orders", new { area = "" });
+            else return Update();
+        }
+        else return Update();
     }
 }

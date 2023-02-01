@@ -5,9 +5,11 @@
         foreach (var order in Model)
         {
             <div class="col-lg-4 card min-h-300px mb-5 me-5 shadow-sm" style="width: 300px">
-                <div class="w-200px h-200px" style="display: flex;justify-content: center">
-                    <img src="~/@order.ImagePath" class="card-rounded" />
-                </div>
+                <a asp-controller="orders" asp-action="get" asp-route-orderId="@order.Id">
+                    <div class="w-200px h-200px" style="display: flex; justify-content: center">
+                        <img src="~/@order.ImagePath" class="card-rounded" />
+                    </div>
+                </a>
                 <div class="text-center">
                     <span class="fs-5 fw-bold text-gray-600">@order.Name</span>
                 </div>

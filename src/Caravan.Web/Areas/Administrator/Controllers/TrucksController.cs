@@ -4,6 +4,7 @@ using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
+
 [Route("adminTrucks")]
 public class TrucksController : BaseController
 {
