@@ -6,66 +6,66 @@
 
 <div class="card w-500px h-630px mt-10 mb-10" style="border: 2px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); margin-left:auto; margin-right:auto; background-color: rgba(255,255,255,0.13); box-shadow: 0 0 40px rgba(8,7,16,0.6);">
     <div class="py-10 pe-10 px-10">
-        <form asp-controller="adminAccounts" asp-action="adminRegister" method="post">
+        <form asp-controller="adminAccounts" enctype="multipart/form-data" asp-action="adminRegister" method="post">
             <label class="form-label fs-2" style="">Sign Up</label>
             
             <div class="mt-5">
                 <label class="required form-label">First Name</label>
-                <input type="text" asp-for=FirstName class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="text" asp-for=FirstName class="form-control form-control-solid text-light" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
                 <label class="required form-label">Last Name</label>
-                <input type="text" asp-for=LastName class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="text" asp-for=LastName class="form-control form-control-solid text-light" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
                 <label class="required form-label">Phone Number</label>
-                <input type="text" asp-for=PhoneNumber class="form-control form-control-solid" placeholder="+998yyxxxxxxx" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="text" asp-for=PhoneNumber class="form-control form-control-solid text-light" placeholder="+998yyxxxxxxx" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
                 <label class="required form-label">Passport Seria</label>
-                <input type="text" asp-for=PassportSeria class="form-control form-control-solid" placeholder="AA" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="text" asp-for=PassportSeria class="form-control form-control-solid text-light" placeholder="AA" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="PassportSeria" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
                 <label class="required form-label">Passport Number</label>
-                <input type="number" asp-for=PassportNumber class="form-control form-control-solid" placeholder="1234567" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="number" asp-for=PassportNumber class="form-control form-control-solid text-light" placeholder="1234567" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="PassportNumber" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">Image</label>
-                <input type="file" asp-for=Image class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label">Image</label>
+                <input type="file" asp-for=Image class="form-control form-control-solid text-light" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
                 <label class="required form-label">Email</label>
-                <input type="email" asp-for=Email class="form-control form-control-solid" placeholder="Example@gmail.com" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="email" asp-for=Email class="form-control form-control-solid text-light" placeholder="Example@gmail.com" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             
             <div class="mt-5">
                 <label class="required form-label">Password</label>
-                <input type="password" asp-for=Password class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <input type="password" asp-for=Password class="form-control form-control-solid text-light" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-check form-check-custom form-check-solid mt-5 ">
-                <input class="form-check-input" type="checkbox" value="" />
+                <input class="form-check-input text-light" type="checkbox" value="" />
                 <label class="form-check-label" for="flexCheckDefault" style="color: #ffffff">
-                    I <a href="www.google.com">agree</a> to the terms of use!
+                    I <a href="https://www.google.com">agree</a> to the terms of use!
                 </label>
             </div>
 
             <div class="mt-8">
-                <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="Sign Up" />
+                <input type="submit" class="btn btn-warning rounded hover-scale" style="width:100%;" value="Sign Up" />
             </div>
 
             <div class="mt-8 mb-10">

@@ -6,20 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
 [Route("adminAccounts")]
-public class AccountsController : BaseController
+public class AdminAccountsController : BaseController
 {
     private readonly IAccountService _accountService;
-
-    public AccountsController(IAccountService accountService)
+    public AdminAccountsController(IAccountService accountService)
     {
         this._accountService = accountService;
     }
 
     [HttpGet("adminRegister")]
-    public ViewResult Register()
-    {
-        return View("AdminRegister");
-    }
+    public ViewResult AdminRegister() => View("../Accounts/AdminRegister");
+
     [HttpPost("adminRegister")]
     public async Task<IActionResult> AdminRegisterAsync([FromForm] AdminCreateDto adminCreateDto)
     {
@@ -32,22 +29,24 @@ public class AccountsController : BaseController
             }
             else
             {
-                return Register();
+                return AdminRegister();
             }
         }
         else
         {
-            return Register();
+            return AdminRegister();
         }
-
+     
     }
-
-
+     
+     
     [HttpGet("adminLogin")]
     public ViewResult Login()
     {
-        return View("AdminLogin");
+        return View("../Accounts/AdminLogin");
     }
+    
+    [HttpPost("adminLogin")]
     public async Task<IActionResult> LoginAsync(AccountLoginDto accountLoginDto)
     {
         if (ModelState.IsValid)
@@ -60,7 +59,7 @@ public class AccountsController : BaseController
                     HttpOnly= true,
                     SameSite = SameSiteMode.Strict
                 });
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "../Home", new { area = "" });
             }
             catch (ModelErrorException modelError)
             {
