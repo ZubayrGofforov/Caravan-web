@@ -73,4 +73,5 @@ public class TrucksController : Controller
             return RedirectToAction("Index", "Trucks", new { area = "" });
         else return Update();
     }
+    
 }
