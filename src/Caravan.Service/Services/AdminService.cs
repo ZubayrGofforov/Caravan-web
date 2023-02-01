@@ -67,7 +67,6 @@ namespace Caravan.Service.Services
             _repository.Administrators.TrackingDeteched(admin);
             admin.FirstName= dto.FirstName;
             admin.LastName = dto.LastName;
-            admin.ImagePath = dto.ImagePath;
             admin.PhoneNumber = dto.PhoneNumber;
             admin.PassportNumber = dto.PassportNumber;
             admin.PassportSeria= dto.PassportSeria;

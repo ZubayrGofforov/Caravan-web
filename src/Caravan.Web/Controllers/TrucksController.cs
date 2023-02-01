@@ -58,4 +58,19 @@ public class TrucksController : Controller
         }
         else return Create();
     }
+
+    [HttpGet("Update")]
+    public ViewResult Update()
+    {
+        return View("TruckUpdate");
+    }
+
+    [HttpPost("Update")]
+    public async Task<IActionResult> UpdateAsync(TruckUpdateDto updateDto)
+    {
+        var res = await _service.UpdateAsync(1, updateDto);
+        if (res)
+            return RedirectToAction("Index", "Trucks", new { area = "" });
+        else return Update();
+    }
 }
