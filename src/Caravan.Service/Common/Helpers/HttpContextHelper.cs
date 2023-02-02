@@ -5,6 +5,7 @@ namespace Caravan.Service.Common.Helpers;
 public class HttpContextHelper
 {
     public static IHttpContextAccessor Accessor { get; set; }
+    
     public static HttpResponse Response => Accessor.HttpContext.Response;
 
     public static IHeaderDictionary ResponseHeaders => Response.Headers;
