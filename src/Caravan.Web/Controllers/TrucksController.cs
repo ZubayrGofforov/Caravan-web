@@ -26,9 +26,9 @@ public class TrucksController : Controller
     }
 
     [HttpGet("truckId")]
-    public async Task<ViewResult> GetAsync(long truckId)
+    public async Task<ViewResult> GetAsync(long id)
     {
-        var truck = await _service.GetAsync(truckId);
+        var truck = await _service.GetAsync(id);
         return View(truck);
     }
 
@@ -65,20 +65,20 @@ public class TrucksController : Controller
     }
 
     [HttpGet("Update")]
-    public async Task<IActionResult> UpdateRedirectAsync(long id)
+    public async Task<IActionResult> UpdateRedirectAsync(long truckid)
     {
-        var truck = await _service.GetAsync(id);
-        truck.Id = id;
+        var truck = await _service.GetAsync(truckid);
+        truck.Id = truckid;
         var dto = new TruckUpdateDto()
         {
-            Id = id,
+            Id = truckid,
             Name = truck.Name,
             Description = truck.Description,
             TruckNumber = truck.TruckNumber,
             MaxLoad = truck.MaxLoad,
             LocationName = truck.LocationName
         };
-        ViewBag.truckId = id;
+        ViewBag.truckId = truckid;
         return View("Update", dto);
     }
 
