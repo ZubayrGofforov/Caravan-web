@@ -34,13 +34,13 @@ public class TrucksController : Controller
 
 
     // Davomi yoziladi!
-    [HttpPost("truckId")]
-    public async Task<IActionResult> DeleteAsync(long truckId)
-    {
-        var truck = await _service.DeleteAsync(truckId);
-        if (truck) return RedirectToAction("Index", "Trucks", new { area = "" });
-        else throw new Exception();
-    }
+    //[HttpPost("truckId")]
+    //public async Task<IActionResult> DeleteAsync(long truckId)
+    //{
+    //    var truck = await _service.DeleteAsync(truckId);
+    //    if (truck) return RedirectToAction("Index", "Trucks", new { area = "" });
+    //    else throw new Exception();
+    //}
 
 
     [HttpGet("Create")]
@@ -83,13 +83,26 @@ public class TrucksController : Controller
     }
 
     [HttpPost("Update")]
-    public async Task<IActionResult> UpdateAsync(long id, TruckUpdateDto updateDto)
+    public async Task<IActionResult> UpdateAsync(long truckid, TruckUpdateDto updateDto)
     {
-        var res = await _service.UpdateAsync(id,updateDto);
+        var res = await _service.UpdateAsync(truckid, updateDto);
         if (res)
             return RedirectToAction("Index", "Trucks", new { area = "" });
 
-        else return  await UpdateRedirectAsync(id);
+        else return  await UpdateRedirectAsync(truckid);
     }
-    
+
+    [HttpGet("Delete")]
+    public async Task<IActionResult> DeleteAsync(long truckid)
+    {
+        var res = await _service.DeleteAsync(truckid);
+        if (res)
+        {
+            return RedirectToAction("Index", "Trucks", new { area = "" });
+        }
+        return RedirectToAction("Index", "Trucks", new { area = "" });
+
+
+    }
+
 }
