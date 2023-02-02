@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Caravan.Service.Common.Helpers;
 using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Trucks;
 using Caravan.Service.Interfaces;
@@ -33,18 +34,15 @@ public class TrucksController : Controller
         ViewBag.HomeTitle = "Trucks / Get";
         return View(truck);
     }
-
-
-    // Davomi yoziladi!
-    //[HttpPost("truckId")]
-    //public async Task<IActionResult> DeleteAsync(long truckId)
-    //{
-    //    var truck = await _service.DeleteAsync(truckId);
-    //    if (truck) return RedirectToAction("Index", "Trucks", new { area = "" });
-    //    else throw new Exception();
-    //}
-
-
+    [HttpGet("ownerid")]
+    public async Task<ViewResult> GetOwnerIdAsync( int page = 1)
+    
+    {
+        long ownerid = HttpContextHelper.UserId;
+        var trucks = await _service.GetAllByIdAsync(ownerid, new PaginationParams(page,_pageSize));
+        ViewBag.ownerid = ownerid;
+        return View("OwnerTrucks", trucks);
+    }
     [HttpGet("Create")]
     public ViewResult Create()
     {

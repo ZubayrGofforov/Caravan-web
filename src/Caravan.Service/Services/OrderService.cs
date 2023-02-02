@@ -81,7 +81,7 @@ namespace Caravan.Service.Services
             if (id != HttpContextHelper.UserId)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, "You are not allowed to view this id information, your information");
             var orders = await Task.Run(() => _unitOfWork.Orders.Where(x => x.UserId == HttpContextHelper.UserId).ToListAsync());
-            var result = await Task.Run(() => orders.Where(x => x.Id == HttpContextHelper.UserId)
+            var result = await Task.Run(() => orders.Where(x => x.UserId == HttpContextHelper.UserId)
                                                     .ToList().ConvertAll(x => _mapper.Map<OrderViewModel>(x)));
 
             if (result is null)

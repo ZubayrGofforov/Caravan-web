@@ -1,4 +1,5 @@
-﻿using Caravan.Service.Common.Utils;
+﻿using Caravan.Service.Common.Helpers;
+using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Locations;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
@@ -32,7 +33,13 @@ public class OrdersController : Controller
         ViewBag.HomeTitle = "Orders / Get";
         return View(product);
     }
-
+    [HttpGet("OwnerOrders")]
+    public async Task<ViewResult> GetAllByIdAsync(int page = 1)    
+    {
+        long ownerId = HttpContextHelper.UserId;
+        var orders = await _orderService.GetAllByIdAsync(ownerId, new PaginationParams(page, _pageSize));
+        return View("OwnerOrders", orders);
+    }
     [HttpGet("Create")]
     public ViewResult Create()
     {
