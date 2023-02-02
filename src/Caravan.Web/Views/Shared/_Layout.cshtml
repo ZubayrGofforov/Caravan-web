@@ -94,12 +94,24 @@
 												</a>
 											</span>
 										</div>
+                                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+											<span class="menu-item">
+												<a asp-controller="Orders" asp-action="Create" class="menu-link">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Create Orders</span>
+												</a>
+											</span>
+										</div>
 										<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-											<span class="menu-link">
+											<span class="menu-item">
+                                             <a class="menu-link" asp-controller="Orders" asp-action="OwnerOrders">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
 												<span class="menu-title">My Orders</span>
+                                                </a>
 											</span>
 											<div class="menu-sub menu-sub-accordion">
 												<!-- Id bo'yicha orderlar-->
@@ -145,13 +157,23 @@
 												<span class="menu-title">All Trucks</span>
 											</a>
 										</div>
+                                        <div class="menu-item">
+											<a class="menu-link" asp-controller="Trucks" asp-action="Create">
+												<span class="menu-bullet">
+													<span class="bullet bullet-dot"></span>
+												</span>
+												<span class="menu-title">Create Trucks</span>
+											</a>
+										</div>
+
 										<div class="menu-item">
+                                             <a class="menu-link" asp-controller="Trucks" asp-action="ownerid">
 											<a class="menu-link">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
 												<span class="menu-title">My Trucks</span>
-											</a>
+                                            </a>
 										</div>
 										<div class="menu-item">
 											<a class="menu-link" asp-controller="Trucks" asp-action="Create" >
