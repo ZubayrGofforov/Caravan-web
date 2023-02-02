@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
-[Area("administrator"), Authorize(Roles = "Admin")]
+[Area("administrator")]
 public class BaseController : Controller
 {
    
