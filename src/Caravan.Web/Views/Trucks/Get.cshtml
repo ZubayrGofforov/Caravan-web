@@ -46,13 +46,13 @@
         </table>*@
     </div>
     <div>
-        <a asp-controller="trucks" asp-action="update" asp-route-orderId="@Model.Id" class="btn btn-active-light-primary" role="dialog">Update</a>
+        <a asp-controller="trucks" asp-action="update" asp-route-truckid="@Model.Id" class="btn btn-active-light-primary" role="dialog">Update</a>
     </div>
 
     <div>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2">
-            Launch demo modal
-        </button>
+        <a class="btn btn-active-light-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2">
+            Delete
+        </a>
 
         <div class="modal fade" tabindex="-1" id="kt_modal_scrollable_2">
             <div class="modal-dialog modal-dialog-scrollable">
@@ -68,12 +68,12 @@
                     </div>
 
                     <div class="modal-body">
-                        <p>Long modal body text goes here.</p>
+                        <p> Do you want to delete @Model.Name ?</p>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <a asp-controller="trucks" asp-action="delete" asp-route-truckid="@Model.Id" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
             </div>
