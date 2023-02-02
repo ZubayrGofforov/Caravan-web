@@ -3,12 +3,15 @@
 
 <div class="row g-10" style="display: flex;justify-content: center">
     @{
+       
         foreach (var truck in Model)
         {
             <div class="col-lg-4 card min-h-300px mb-5 me-5" style="width: 270px">
                 <div class="mt-5 mb-5">
                     <div class="w-200px h-200px" style="display: flex;justify-content: center">
-                        <img src="~/@truck.ImagePath" class="card-rounded" />
+                        <a asp-action="get" asp-controller="trucks" asp-route-id="@truck.Id">
+                            <img src="~/@truck.ImagePath" class="card-rounded justify-content: center w-200px h-200px" />
+                        </a>
                     </div>
                     <div class="text-center">
                         <span class="fs-5 fw-bold text-gray-600">@truck.Name</span>

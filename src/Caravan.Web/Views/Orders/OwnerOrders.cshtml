@@ -1,0 +1,28 @@
+﻿@using Caravan.Service.ViewModels;
+@model List<OrderViewModel>
+<div class="row mt-8 mb-8 " style="display: flex;justify-content: center">
+    @{
+        foreach (var order in Model)
+        {
+            <div class="col-lg-4 card min-h-300px mb-5 me-5 shadow-sm" style="width: 300px">
+                <a asp-action="get" asp-controller="orders" asp-route-orderId="@order.Id">
+                    <div class="w-250px h-250px mt-3" style="display: flex; justify-content: center">
+                        <img src="~/@order.ImagePath" class="card-rounded justify-content: center w-200px h-200px" />
+                    </div>
+                </a>
+                <div class="text-center">
+                    <span class="fs-5 fw-bold text-gray-600">@order.Name</span>
+                </div>
+                <div class="text-center">
+                    <span class="fs-5 fw-normal text-gray-600">Status: @order.IsTaken</span>
+                </div>
+                <div class="text-center">
+                    <span class="fs-5 fw-normal text-gray-600">@order.LocationName</span>
+                </div>
+                <div class="text-center">
+                    <span class="fs-5 fw-normal text-gray-600">@order.Price</span>
+                </div>
+            </div>
+        }
+    }
+</div>
