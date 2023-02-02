@@ -22,6 +22,7 @@ public class TrucksController : Controller
     public async Task<ViewResult> GetAllAsync(int page = 1)
     {
         var trucks = await _service.GetAllAsync(new PaginationParams(page, _pageSize));
+        ViewBag.HomeTitle = "Trucks";
         return View("Index",trucks);
     }
 
@@ -29,6 +30,7 @@ public class TrucksController : Controller
     public async Task<ViewResult> GetAsync(long id)
     {
         var truck = await _service.GetAsync(id);
+        ViewBag.HomeTitle = "Trucks / Get";
         return View(truck);
     }
 
@@ -79,6 +81,7 @@ public class TrucksController : Controller
             LocationName = truck.LocationName
         };
         ViewBag.truckId = truckid;
+        ViewBag.HomeTitle = "Orders / Get / Update";
         return View("Update", dto);
     }
 
