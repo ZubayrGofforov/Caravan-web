@@ -36,6 +36,7 @@ public class OrdersController : Controller
     [HttpGet("Create")]
     public ViewResult Create()
     {
+        ViewBag.HomeTitle = "Orders / Create";
         return View("OrderCreate");
     }
 
