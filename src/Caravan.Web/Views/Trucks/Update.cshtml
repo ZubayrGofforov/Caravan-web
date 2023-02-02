@@ -3,19 +3,18 @@
 
 <div class="card w-500px h-630px mt-10 mb-10" style="border: 2px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); margin-left:auto; margin-right:auto; background-color: rgba(255,255,255,0.13); box-shadow: 0 0 40px rgba(8,7,16,0.6);">
     <div class="py-10 pe-10 px-10">
-        <form asp-controller="trucks" enctype="multipart/form-data" asp-action="Update" asp-route-id = "@Model.Id"  method="post">
             <label class="form-label fs-2 text-primary" style="">Truck Update</label>
             <div class="mt-5">
                 <label class="required form-label text-primary">Truck Name</label>
                 <input type="text" asp-for=Name class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-
-           @* <div class="mt-5">dv
+        <form asp-controller="trucks" enctype="multipart/form-data" asp-action="Update" asp-route-truckid="@Model.Id" method="post">
+            <div class="mt-5">dv
                 <label class="required form-label text-primary">Image</label>
                 <input type="file" asp-for=Image class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Image" class="text-danger"></span>
-            </div>*@
+            </div>
 
             <div class="mt-5">
                 <label class="required form-label text-primary">Truck number</label>
