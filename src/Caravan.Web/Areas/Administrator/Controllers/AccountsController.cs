@@ -1,4 +1,5 @@
-﻿using Caravan.Service.Dtos.Admins;
+﻿using Caravan.Service.Common.Helpers;
+using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,5 +33,15 @@ public class AccountsController : BaseController
         {
             return Register();
         }
+    }
+
+    [HttpGet]
+    public IActionResult LogOut()
+    {
+        HttpContext.Response.Cookies.Append("X-Access-Token", "", new CookieOptions()
+        {
+            Expires = TimeHelper.GetCurrentServerTime().AddDays(-1)
+        });
+        return RedirectToAction("Index", "Home", new { area = "Home" });
     }
 }
