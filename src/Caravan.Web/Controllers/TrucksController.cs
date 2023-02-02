@@ -48,6 +48,7 @@ public class TrucksController : Controller
     [HttpGet("Create")]
     public ViewResult Create()
     {
+        ViewBag.HomeTitle = "Orders / Create";
         return View("TruckCreate");
     }
 

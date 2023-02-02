@@ -105,16 +105,16 @@
 												<!-- Id bo'yicha orderlar-->
 											</div>
 										</div>
-										<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" data-kt-menu-flip="bottom" class="menu-item menu-accordion">
-											<span class="menu-link">
+										<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+											<span class="menu-item">
+												<a asp-controller="Orders" asp-action="Create" class="menu-link">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Top Orders</span>
+												<span class="menu-title">Create Order</span>
+												</a>
 											</span>
-												<!-- Top orders-->
 										</div>
-										
 									</div>
 								</div>
 								<div data-kt-menu-trigger="click" data-kt-menu-placement="right-start" data-kt-menu-flip="bottom" class="menu-item py-2">
@@ -146,7 +146,7 @@
 											</a>
 										</div>
 										<div class="menu-item">
-											<a class="menu-link" href="#" data-kt-page="pro">
+											<a class="menu-link">
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
@@ -154,11 +154,11 @@
 											</a>
 										</div>
 										<div class="menu-item">
-											<a class="menu-link" href="#" data-kt-page="pro">
+											<a class="menu-link" asp-controller="Trucks" asp-action="Create" >
 												<span class="menu-bullet">
 													<span class="bullet bullet-dot"></span>
 												</span>
-												<span class="menu-title">Top Trucks</span>
+												<span class="menu-title">Create Truck</span>
 											</a>
 										</div>
 									</div>
