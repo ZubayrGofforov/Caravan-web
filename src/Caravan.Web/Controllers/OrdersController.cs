@@ -29,7 +29,7 @@ public class OrdersController : Controller
     public async Task<ViewResult> GetAsync(long orderId)
     {
         var product = await _orderService.GetAsync(orderId);
-        ViewBag.HomeTitle = "Orders/Get";
+        ViewBag.HomeTitle = "Orders / Get";
         return View(product);
     }
 
@@ -59,6 +59,7 @@ public class OrdersController : Controller
     {
         var order = await _orderService.GetAsync(orderId);
         ViewBag.orderId = orderId;
+        ViewBag.HomeTitle = "Orders / Get / Update";
         var orderUpdate = new OrderUpdateDto()
         {
             Name = order.Name,
