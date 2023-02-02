@@ -1,6 +1,8 @@
 ﻿using Caravan.Service.Common.Utils;
+using Caravan.Service.Dtos.Locations;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
+using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +21,7 @@ public class OrdersController : Controller
     public async Task<ViewResult> Index(int page = 1)
     {
         var orders = await _orderService.GetAllAsync(new PaginationParams(page, _pageSize));
+        ViewBag.HomeTitle = "Orders";
         return View("Index", orders);
     }
 
@@ -26,6 +29,7 @@ public class OrdersController : Controller
     public async Task<ViewResult> GetAsync(long orderId)
     {
         var product = await _orderService.GetAsync(orderId);
+        ViewBag.HomeTitle = "Orders/Get";
         return View(product);
     }
 
@@ -48,20 +52,51 @@ public class OrdersController : Controller
             else return Create();
         }
         else return Create();
-    }       
+    }
 
     [HttpGet("update")]
-    public ViewResult Update() => View("../Orders/OrderUpdate");
+    public async Task<ViewResult> Update(long orderId)
+    {
+        var order = await _orderService.GetAsync(orderId);
+        ViewBag.orderId = orderId;
+        var orderUpdate = new OrderUpdateDto()
+        {
+            Name = order.Name,
+            Price = order.Price,
+            Weight = order.Weight,
+            Size = order.Size,
+            LocationName = order.LocationName,
+            TransferLocation = new LocationCreateDto()
+            {
+                Latitude = order.TakenLocation.Latitude,
+                Longitude = order.TakenLocation.Longitude,
+            },
+            CurrentlyLocation = new LocationCreateDto()
+            {
+                Latitude = order.DeliveryLocation.Latitude,
+                Longitude = order.DeliveryLocation.Longitude,
+            },
+        };
+        return View("../Orders/OrderUpdate",orderUpdate);
+    }
 
     [HttpPost("update")]
-    public async Task<IActionResult> UpdateAsync([FromForm] OrderUpdateDto orderUpdateDto)
+    public async Task<IActionResult> UpdateAsync([FromForm] OrderUpdateDto orderUpdateDto, long orderId)
     {
         if (ModelState.IsValid)
         {
-            var order = await _orderService.UpdateAsync(1, orderUpdateDto);
+            var order = await _orderService.UpdateAsync(orderId, orderUpdateDto);
             if (order) return RedirectToAction("Index", "Orders", new { area = "" });
-            else return Update();
+            else return RedirectToAction("Index", "Orders", new { area = "" });
         }
-        else return Update();
+        else return await Update(orderId);
+    }
+
+    [HttpGet("delete")]
+    public async Task<IActionResult> DeleteAsync(long deleteOrderId)
+    {
+        var result = await _orderService.DeleteAsync(deleteOrderId);
+        if (result) return RedirectToAction("Index", "Orders", new { area = "" });
+        else return await GetAsync(deleteOrderId);
     }
 }
