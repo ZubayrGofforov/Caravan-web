@@ -1,34 +1,28 @@
-﻿using Caravan.Service.Common.Exceptions;
-using Caravan.Service.Dtos.Accounts;
+﻿using Caravan.Service.Common.Helpers;
 using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
-[Route("adminAccounts")]
 public class AccountsController : BaseController
 {
     private readonly IAccountService _accountService;
-
     public AccountsController(IAccountService accountService)
     {
         this._accountService = accountService;
     }
 
-    [HttpGet("adminRegister")]
-    public ViewResult Register()
+    public ViewResult Register() => View("Register");
+
+    [HttpPost]
+    public async Task<IActionResult> RegisterAsync([FromForm] AdminCreateDto adminCreateDto)
     {
-        return View("AdminRegister");
-    }
-    [HttpPost("adminRegister")]
-    public async Task<IActionResult> AdminRegisterAsync([FromForm] AdminCreateDto adminCreateDto)
-    {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             bool result = await _accountService.AdminRegisterAsync(adminCreateDto);
-            if(result)
+            if (result)
             {
-                return RedirectToAction("adminLogin", "adminAccounts", new { area = "" });
+                return RedirectToAction("Login", "AdminAccounts", new { area = "administrator" });
             }
             else
             {
@@ -39,42 +33,15 @@ public class AccountsController : BaseController
         {
             return Register();
         }
-
     }
 
-
-    [HttpGet("adminLogin")]
-    public ViewResult Login()
+    [HttpGet]
+    public IActionResult LogOut()
     {
-        return View("AdminLogin");
-    }
-    public async Task<IActionResult> LoginAsync(AccountLoginDto accountLoginDto)
-    {
-        if (ModelState.IsValid)
+        HttpContext.Response.Cookies.Append("X-Access-Token", "", new CookieOptions()
         {
-            try
-            {
-                string token = await _accountService.LoginAsync(accountLoginDto);
-                HttpContext.Response.Cookies.Append("X-Access-Token", token, new CookieOptions()
-                {
-                    HttpOnly= true,
-                    SameSite = SameSiteMode.Strict
-                });
-                return RedirectToAction("Index", "Home", new { area = "" });
-            }
-            catch (ModelErrorException modelError)
-            {
-                ModelState.AddModelError(modelError.Property, modelError.Message);
-                return Login();
-            }
-            catch
-            {
-                return Login();
-            }
-        }
-        else
-        {
-            return Login();
-        }
+            Expires = TimeHelper.GetCurrentServerTime().AddDays(-1)
+        });
+        return RedirectToAction("Index", "Home", new { area = "Home" });
     }
 }

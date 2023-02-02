@@ -15,7 +15,6 @@ public class AccountsController : Controller
         this._service = accountService;
     }
 
-
     [HttpGet("register")]
     public ViewResult Register()
     {

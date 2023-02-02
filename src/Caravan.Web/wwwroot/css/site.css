@@ -568,6 +568,10 @@ progress {
     height: auto;
 }
 
+.bg-gradient-primary {
+    background-color: dodgerblue !important;
+}
+
 .img-thumbnail {
     padding: 0.25rem;
     background-color: #ffffff;
@@ -2254,6 +2258,12 @@ progress {
         background-color: var(--bs-table-bg);
         border-bottom-width: 1px;
         box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+    }
+
+    .shadow1 {
+        -webkit-box-shadow: 0px 0px 6px 4px rgba(163,157,163,1);
+        -moz-box-shadow: 0px 0px 6px 4px rgba(163,157,163,1);
+        box-shadow: 0px 0px 6px 4px rgba(163,157,163,1);
     }
 
     .table > tbody {
