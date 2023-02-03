@@ -26,6 +26,8 @@
                      <td>@order.TakenLocation.Longitude    , @order.TakenLocation.Latitude</td>
                      <td>@order.User.Id </td>
                      <td>@order.User.FirstName </td>
+                     <td><a asp-controller="Orders" asp-action="update" asp-route-orderid="@order.Id" class="btn btn-primary">Edit</a></td>
+                     <td><a asp-controller ="Orders" asp-action ="Delete" asp-route-orderid="@order.Id"class="btn btn-danger">Delete</a></td>
             </tr>
 
         </tbody>
