@@ -42,4 +42,36 @@ public class TrucksController : BaseController
         var truck = await _truckService.GetAsync(truckId);
         return View(truck);
     }
+    [HttpGet("Update")]
+    public async Task<IActionResult> UpdateRedirectAsync(long truckid)
+    {
+        var truck = await _truckService.GetAsync(truckid);
+        truck.Id = truckid;
+        var dto = new TruckUpdateDto()
+        {
+            Id = truckid,
+            Name = truck.Name,
+            Description = truck.Description,
+            TruckNumber = truck.TruckNumber,
+            MaxLoad = truck.MaxLoad,
+            LocationName = truck.LocationName
+        };
+        ViewBag.truckId = truckid;
+        ViewBag.HomeTitle = "Orders / Get / Update";
+        return View("TruckUpdate", dto);
+    }
+
+    [HttpGet("Delete")]
+    public async Task<IActionResult> DeleteAsync(long truckid)
+    {
+        var res = await _truckService.DeleteAsync(truckid);
+        if (res)
+        {
+            return RedirectToAction("Index", "Trucks",  new { area = "Adminstrator" });
+        }
+        return RedirectToAction("Index", "Trucks", new { area = "Adminstrator" });
+
+
+    }
+
 }
