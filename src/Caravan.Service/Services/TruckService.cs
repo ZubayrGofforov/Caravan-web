@@ -53,13 +53,16 @@ namespace Caravan.Service.Services
         {
             var truck = await _unitOfWork.Trucks.FindByIdAsync(id);
             if (truck is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
+            if (truck.UserId == HttpContextHelper.UserId || HttpContextHelper.UserRole != "User")
+            {
+                if (!string.IsNullOrEmpty(truck.ImagePath))
+                    await _imageService.DeleteImageAsync(truck.ImagePath);
+                _unitOfWork.Trucks.Delete(id);
+                var res = await _unitOfWork.SaveChangesAsync();
+                return res > 0;
+            }
+            else throw new StatusCodeException(HttpStatusCode.MethodNotAllowed, "You can't delete thus truck");
 
-            if (!string.IsNullOrEmpty(truck.ImagePath))
-                await _imageService.DeleteImageAsync(truck.ImagePath);
-            _unitOfWork.Trucks.Delete(id);
-
-            var res = await _unitOfWork.SaveChangesAsync();
-            return res > 0;
         }
 
         public async Task<PagedList<TruckViewModel>> GetAllAsync(PaginationParams @paginationParams)
@@ -128,7 +131,7 @@ namespace Caravan.Service.Services
             var truck = await _unitOfWork.Trucks.FindByIdAsync(id);
             if (truck is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
 
-            if (HttpContextHelper.UserId == 16 || HttpContextHelper.UserRole != "User")
+            if (HttpContextHelper.UserId == truck.Id || HttpContextHelper.UserRole != "User")
             {
                 _unitOfWork.Trucks.TrackingDeteched(truck);
                 truck.Name = updateDto.Name;
