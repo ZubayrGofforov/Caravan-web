@@ -41,12 +41,10 @@ namespace Caravan.Service.Services
             return res > 0;
         }
 
-        public async Task<IEnumerable<AdminViewModel>> GetAllAsync(PaginationParams @params)
+        public async Task<PagedList<AdminViewModel>> GetAllAsync(PaginationParams @params)
         {
-            var query = _repository.Administrators.GetAll().OrderBy(x => x.CreatedAt).ToList()
-                .ConvertAll(x => _mapper.Map<AdminViewModel>(x));
-            var data = await _paginatorService.ToPagedAsync(query, @params.PageNumber, @params.PageSize);
-            return data;
+            var query = _repository.Administrators.GetAll().OrderBy(x => x.CreatedAt).Select(x => _mapper.Map<AdminViewModel>(x));
+            return await PagedList<AdminViewModel>.ToPagedListAsync(query, @params);
         }
 
         public async Task<AdminViewModel> GetByIdAsync(long id)

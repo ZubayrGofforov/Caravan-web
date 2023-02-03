@@ -7,7 +7,7 @@ namespace Caravan.Service.Interfaces
 {
     public interface ITruckService
     {
-        public Task<IEnumerable<TruckViewModel>> GetAllAsync(PaginationParams @paginationParams);
+        public Task<PagedList<TruckViewModel>> GetAllAsync(PaginationParams @paginationParams);
 
         public Task<TruckViewModel> GetAsync(long id);
 
@@ -21,8 +21,8 @@ namespace Caravan.Service.Interfaces
 
         public Task<bool> UpdateLocationAsync(long id, LocationCreateDto dto);
 
-        public Task<IEnumerable<TruckViewModel>> GetAllByIdAsync(long id, PaginationParams @paginationParams);
+        public Task<PagedList<TruckViewModel>> GetAllByIdAsync(long id, PaginationParams @paginationParams);
 
-        public Task<IEnumerable<TruckViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams);
+        public Task<PagedList<TruckViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams);
     }
 }

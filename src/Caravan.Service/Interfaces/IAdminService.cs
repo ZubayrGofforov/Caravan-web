@@ -8,7 +8,7 @@ namespace Caravan.Service.Interfaces
     {
         public Task<bool> DeleteAsync(long id);
         public Task<bool> UpdateAsync(long id, AdminCreateDto dto);
-        public Task<IEnumerable<AdminViewModel>> GetAllAsync(PaginationParams @params);
+        public Task<PagedList<AdminViewModel>> GetAllAsync(PaginationParams @params);
         public Task<AdminViewModel> GetByIdAsync(long id);
     }
 }

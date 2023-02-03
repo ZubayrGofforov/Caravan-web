@@ -14,7 +14,7 @@ namespace Caravan.Web.Controllers;
 public class OrdersController : Controller
 {
     private readonly IOrderService _orderService;
-    private readonly int _pageSize = 20;
+    private readonly int _pageSize = 1;
     public OrdersController(IOrderService orderService)
     {
         this._orderService = orderService;
