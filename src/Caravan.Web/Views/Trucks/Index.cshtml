@@ -1,5 +1,5 @@
 ﻿@using Caravan.Service.ViewModels;
-@model List<TruckViewModel>
+@model PagedList<TruckViewModel>
 
 <div class="row mb-8 mt-8" style="display: flex;justify-content: center">
     @{
@@ -17,6 +17,132 @@
                     </div>
                 </div>
             </div>
+        }
+    }
+    @{
+        if (Model.MetaData.TotalPages > 1 && Model.MetaData.CurrentPage <= Model.MetaData.TotalPages)
+        {
+            <ul class="pagination pagination-outline">
+                @{
+                    if (@Model.MetaData.HasPrevious)
+                    {
+                        <li class="page-item previous m-1">
+                            <a asp-controller="trucks" asp-action="Index" asp-route-page="@(Model.MetaData.CurrentPage-1)" class="page-link"><i class="previous"></i></a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item previous disabled m-1">
+                            <a href="#" class="page-link"><i class="previous"></i></a>
+                        </li>
+                    }
+                    if (Model.MetaData.TotalPages > 12)
+                    {
+                        if (Model.MetaData.CurrentPage == 1)
+                        {
+                            <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="1" class="page-link">1</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="1" class="page-link">1</a></li>
+                        }
+                        if (Model.MetaData.CurrentPage == 2)
+                        {
+                            <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="2" class="page-link">2</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="2" class="page-link">2</a></li>
+                        }
+                        if (Model.MetaData.CurrentPage < 8)
+                        {
+                            for (int _page = 3; _page <= 10; _page++)
+                            {
+
+                                if (_page == Model.MetaData.CurrentPage)
+                                {
+                                    <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                                }
+                            }
+                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                        }
+                        else if (Model.MetaData.CurrentPage >= 8 && Model.MetaData.CurrentPage < Model.MetaData.TotalPages - 7)
+                        {
+                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                            for (int _page = Model.MetaData.CurrentPage - 3; _page <= Model.MetaData.CurrentPage + 3; _page++)
+                            {
+                                if (_page == Model.MetaData.CurrentPage)
+                                {
+                                    <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                                }
+                            }
+                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                        }
+                        else if (Model.MetaData.CurrentPage >= Model.MetaData.TotalPages - 7)
+                        {
+                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                            for (int _page = Model.MetaData.TotalPages - 9; _page <= Model.MetaData.TotalPages - 2; _page++)
+                            {
+                                if (_page == Model.MetaData.CurrentPage)
+                                {
+                                    <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                                }
+                                else
+                                {
+                                    <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                                }
+                            }
+                        }
+                        if (Model.MetaData.TotalPages - 1 == Model.MetaData.CurrentPage)
+                        {
+                            <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@(Model.MetaData.TotalPages - 1)" class="page-link">@(Model.MetaData.TotalPages - 1)</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@(Model.MetaData.TotalPages - 1)" class="page-link">@(Model.MetaData.TotalPages - 1)</a></li>
+                        }
+                        if (Model.MetaData.TotalPages == Model.MetaData.CurrentPage)
+                        {
+                            <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@Model.MetaData.TotalPages" class="page-link">@Model.MetaData.TotalPages</a></li>
+                        }
+                        else
+                        {
+                            <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@Model.MetaData.TotalPages" class="page-link">@Model.MetaData.TotalPages</a></li>
+                        }
+                    }
+                    else
+                    {
+                        for (int _page = 1; _page <= Model.MetaData.TotalPages; _page++)
+                        {
+
+                            if (_page == Model.MetaData.CurrentPage)
+                            {
+                                <li class="page-item active m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                            }
+                            else
+                            {
+                                <li class="page-item m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@_page" class="page-link">@_page</a></li>
+                            }
+                        }
+                    }
+                    if (Model.MetaData.HasNext)
+                    {
+                        <li class="page-item next m-1"><a asp-controller="trucks" asp-action="Index" asp-route-page="@(Model.MetaData.CurrentPage + 1)" class="page-link"><i class="next"></i></a></li>
+                    }
+                    else
+                    {
+                        <li class="page-item next disabled m-1"><a href="#" class="page-link"><i class="next"></i></a></li>
+                    }
+                }
+            </ul>
         }
     }
 </div>

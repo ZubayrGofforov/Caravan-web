@@ -12,7 +12,7 @@
         public PaginationMetaData(int currentPage, int pageSize, int totalItems)
         {
             CurrentPage = currentPage;
-            TotalPages = (int)Math.Ceiling((double)(totalItems / pageSize));
+            TotalPages = (int)(double)((totalItems + pageSize-1)/pageSize);
             HasNext = TotalPages > currentPage;
             HasPrevious = currentPage > 1;
             PageSize = pageSize;
