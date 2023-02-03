@@ -18,7 +18,7 @@ public class OrdersController : BaseController
     public async Task<ViewResult> Index(int page = 1)
     {
         var orders = await _orderService.GetAllAsync(new PaginationParams(page, _pageSize));
-        return View(orders);
+        return View("Index",orders);
     }
 
     [HttpGet("orderId")]

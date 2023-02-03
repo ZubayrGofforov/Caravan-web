@@ -57,15 +57,15 @@ namespace Caravan.Service.Services
         {
             var order = await _unitOfWork.Orders.FindByIdAsync(id);
             if (order is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");
-
-            if (!string.IsNullOrEmpty(order.ImagePath))
-                await _imageService.DeleteImageAsync(order.ImagePath);
-
-            _unitOfWork.Orders.Delete(id);
-
-            var res = await _unitOfWork.SaveChangesAsync();
-            return res > 0;
-
+            if (order.UserId == HttpContextHelper.UserId || HttpContextHelper.UserRole != "User")
+            {
+                if (!string.IsNullOrEmpty(order.ImagePath))
+                    await _imageService.DeleteImageAsync(order.ImagePath);
+                _unitOfWork.Orders.Delete(id);
+                var res = await _unitOfWork.SaveChangesAsync();
+                return res > 0;
+            }
+            else throw new StatusCodeException(HttpStatusCode.MethodNotAllowed, "Yo can't delete this order");
         }
 
         public async Task<IEnumerable<OrderViewModel>> GetAllAsync(PaginationParams @paginationParams)
