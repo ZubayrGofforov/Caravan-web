@@ -10,6 +10,7 @@ using Caravan.Service.Interfaces.Common;
 using Caravan.Service.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Caravan.Service.Services
 {
@@ -68,27 +69,26 @@ namespace Caravan.Service.Services
 
         }
 
-        public async Task<IEnumerable<OrderViewModel>> GetAllAsync(PaginationParams @paginationParams)
+        public async Task<PagedList<OrderViewModel>> GetAllAsync(PaginationParams @paginationParams)
         {
-            var query = _unitOfWork.Orders.GetAll().OrderBy(x => x.CreatedAt)
-                .AsNoTracking().ToList().ConvertAll(x => _mapper.Map<OrderViewModel>(x));
-            var data = await _paginator.ToPagedAsync(query, @paginationParams.PageNumber, @paginationParams.PageSize);
-            return data;
+            var query = from order in _unitOfWork.Orders.GetAll()
+                        select _mapper.Map<OrderViewModel>(order);
+            return await PagedList<OrderViewModel>.ToPagedListAsync(query, @paginationParams);
         }
 
-        public async Task<IEnumerable<OrderViewModel>> GetAllByIdAsync(long id, PaginationParams paginationParams)
+        public async Task<PagedList<OrderViewModel>> GetAllByIdAsync(long id, PaginationParams paginationParams)
         {
             if (id != HttpContextHelper.UserId)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, "You are not allowed to view this id information, your information");
-            var orders = await Task.Run(() => _unitOfWork.Orders.Where(x => x.UserId == HttpContextHelper.UserId).ToListAsync());
+            var orders = await Task.Run(() => _unitOfWork.Orders.Where(x => x.UserId == HttpContextHelper.UserId));
             var result = await Task.Run(() => orders.Where(x => x.UserId == HttpContextHelper.UserId)
-                                                    .ToList().ConvertAll(x => _mapper.Map<OrderViewModel>(x)));
+                                                    .Select(x => _mapper.Map<OrderViewModel>(x)));
 
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");
             else
             {
-                var data = await _paginator.ToPagedAsync(result, paginationParams.PageNumber, paginationParams.PageSize);
+                var data = await PagedList<OrderViewModel>.ToPagedListAsync(result, @paginationParams);
                 return data;
             }
         }
@@ -108,16 +108,16 @@ namespace Caravan.Service.Services
             else throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");
         }
 
-        public async Task<IEnumerable<OrderViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams)
+        public async Task<PagedList<OrderViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams)
         {
-            var orders = await Task.Run(() => _unitOfWork.Orders.Where(x => x.LocationName.ToLower() == locationName.ToLower()).ToListAsync());
+            var orders = await Task.Run(() => _unitOfWork.Orders.Where(x => x.LocationName.ToLower() == locationName.ToLower()));
             var result = await Task.Run(() => orders.Where(x => x.LocationName.ToLower() == locationName.ToLower())
-                                                    .ToList().ConvertAll(x => _mapper.Map<OrderViewModel>(x)));
+                                                    .Select(x => _mapper.Map<OrderViewModel>(x)));
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");
             else
             {
-                var data = await _paginator.ToPagedAsync(result, paginationParams.PageNumber, paginationParams.PageSize);
+                var data = await PagedList<OrderViewModel>.ToPagedListAsync(result, @paginationParams);
                 return data;
             }
         }

@@ -16,7 +16,7 @@ namespace Caravan.Service.Services.Common
         public async Task<IList<T>> ToPagedAsync<T>(IList<T> items, int pageNumber, int pageSize)
         {
             int totalItems = items.Count();
-            PaginationMetaData paginationMetaData = new PaginationMetaData()
+            PaginationMetaData paginationMetaData = new PaginationMetaData(pageNumber,pageSize,totalItems)
             {
                 CurrentPage = pageNumber,
                 PageSize = pageSize,

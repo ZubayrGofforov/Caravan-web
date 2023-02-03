@@ -62,28 +62,27 @@ namespace Caravan.Service.Services
             return res > 0;
         }
 
-        public async Task<IEnumerable<TruckViewModel>> GetAllAsync(PaginationParams @paginationParams)
+        public async Task<PagedList<TruckViewModel>> GetAllAsync(PaginationParams @paginationParams)
         {
             var query = _unitOfWork.Trucks.GetAll().OrderBy(x => x.CreatedAt)
-                .ToList().ConvertAll(x => _mapper.Map<TruckViewModel>(x));
-            var data = await _paginator.ToPagedAsync(query, @paginationParams.PageNumber, @paginationParams.PageSize);
-            return data;
+                .Select(x => _mapper.Map<TruckViewModel>(x));
+            return await PagedList<TruckViewModel>.ToPagedListAsync(query, @paginationParams);
+            
         }
 
-        public async Task<IEnumerable<TruckViewModel>> GetAllByIdAsync(long id, PaginationParams @paginationParams)
+        public async Task<PagedList<TruckViewModel>> GetAllByIdAsync(long id, PaginationParams @paginationParams)
         {
             if (id != HttpContextHelper.UserId)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, "You are not allowed to view this id information, your information");
-            var trucks = await Task.Run(() => _unitOfWork.Trucks.Where(x => x.UserId == HttpContextHelper.UserId).ToListAsync());
+            var trucks = await Task.Run(() => _unitOfWork.Trucks.Where(x => x.UserId == HttpContextHelper.UserId));
             var result = await Task.Run(() => trucks.Where(x => x.Id == HttpContextHelper.UserId)
-                                                    .ToList().ConvertAll(x => _mapper.Map<TruckViewModel>(x)));
+                                                    .Select(x => _mapper.Map<TruckViewModel>(x)));
 
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
             else
             {
-                var data = await _paginator.ToPagedAsync(result, paginationParams.PageNumber, paginationParams.PageSize);
-                return data;
+                return await PagedList<TruckViewModel>.ToPagedListAsync(result, @paginationParams);
             }
         }
 
@@ -95,17 +94,16 @@ namespace Caravan.Service.Services
             else throw new StatusCodeException(HttpStatusCode.NotFound, "Track not found");
         }
 
-        public async Task<IEnumerable<TruckViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams)
+        public async Task<PagedList<TruckViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams)
         {
-            var trucks = await Task.Run(() => _unitOfWork.Trucks.Where(x => x.LocationName.ToLower() == locationName.ToLower()).ToListAsync());
+            var trucks = await Task.Run(() => _unitOfWork.Trucks.Where(x => x.LocationName.ToLower() == locationName.ToLower()));
             var result = await Task.Run(() => trucks.Where(x => x.LocationName.ToLower() == locationName.ToLower())
-                                                    .ToList().ConvertAll(x => _mapper.Map<TruckViewModel>(x)));
+                                                    .Select(x => _mapper.Map<TruckViewModel>(x)));
             if (result is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Truck not found");
             else
             {
-                var data = await _paginator.ToPagedAsync(result, paginationParams.PageNumber, paginationParams.PageSize);
-                return data;
+                return await PagedList<TruckViewModel>.ToPagedListAsync(result, @paginationParams);
             }
         }
 

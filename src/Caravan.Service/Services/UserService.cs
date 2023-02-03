@@ -42,12 +42,11 @@ namespace Caravan.Service.Services
             else throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "User not found");
         }
 
-        public async Task<IEnumerable<UserViewModel>> GetAllAysnc(PaginationParams @params)
+        public async Task<PagedList<UserViewModel>> GetAllAysnc(PaginationParams @params)
         {
             var query = unitOfWork.Users.GetAll().OrderBy(x => x.Id)
-                .ToList().ConvertAll(x => mapper.Map<UserViewModel>(x));
-            var data = await _paginatorService.ToPagedAsync(query, @params.PageNumber, @params.PageSize);
-            return data;
+                .Select(x => mapper.Map<UserViewModel>(x));
+            return await PagedList<UserViewModel>.ToPagedListAsync(query,@params);
 
         }
 
