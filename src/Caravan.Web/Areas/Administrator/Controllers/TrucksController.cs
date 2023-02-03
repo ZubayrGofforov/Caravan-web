@@ -14,27 +14,27 @@ public class TrucksController : BaseController
     {
         this._truckService = truckService;
     }
+    public async Task<ViewResult> Index(int page = 1)
+    {
+        var trucks = await _truckService.GetAllAsync(new PaginationParams(page, _pageSize));
+        return View("Index", trucks);
+    }
 
     [HttpGet("create")]
     public ViewResult Create() => View("TruckCreate");
+    [HttpPost("create")]
     public async Task<IActionResult> CreateAsync([FromForm] TruckCreateDto truckCreateDto)
     {
-        if(ModelState.IsValid)
+        if (ModelState.IsValid)
         {
             bool truck = await _truckService.CreateAsync(truckCreateDto);
             if (truck)
-                return RedirectToAction("Index", "Trucks", new { area = "" });
+                return RedirectToAction("Index", "Trucks", new { area = "adminstrator" });
             else
                 return Create();
         }
         else return Create();
-    }
-
-    public async Task<ViewResult> Index(int page = 1)
-    {
-        var trucks = await _truckService.GetAllAsync(new PaginationParams(page, _pageSize));
-        return View(trucks);
-    }
+    }  
 
     [HttpGet("truckId")]
     public async Task<ViewResult> GetAsync(long truckId)

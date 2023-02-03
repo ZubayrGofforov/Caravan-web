@@ -1,0 +1,29 @@
+﻿@using Caravan.Service.ViewModels;
+@model List<UserViewModel>
+<table class="table table-row-dashed table-row-gray-300 gy-7">
+    <thead>
+        <tr class="fw-bolder fs-6 text-gray-800">
+            <th>id</th>
+            <th>FirstName</th>
+            <th>Lastname</th>
+            <th>Phone number</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    @{
+        foreach (var order in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.FirstName</td>
+                    <td>@order.LastName</td>
+                    <td>@order.PhoneNumber</td>
+                    <td>@order.Email</td>
+                </tr>
+
+            </tbody>
+        }
+    }
+
+</table>
