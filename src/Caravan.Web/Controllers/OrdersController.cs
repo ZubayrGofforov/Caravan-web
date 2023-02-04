@@ -14,7 +14,7 @@ namespace Caravan.Web.Controllers;
 public class OrdersController : Controller
 {
     private readonly IOrderService _orderService;
-    private readonly int _pageSize = 3;
+    private readonly int _pageSize = 20;
     public OrdersController(IOrderService orderService)
     {
         this._orderService = orderService;
@@ -33,6 +33,7 @@ public class OrdersController : Controller
         ViewBag.HomeTitle = "Orders / Get";
         return View(product);
     }
+
     [HttpGet("OwnerOrders")]
     public async Task<ViewResult> GetAllByIdAsync(int page = 1)    
     {
