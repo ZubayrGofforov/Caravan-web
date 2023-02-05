@@ -16,19 +16,19 @@ public class UserController : Controller
         return View();
     }
 
-    //[HttpGet]
-    //public async Task<ViewResult> Update(long userId)
-    //{
-    //    var user = await _userService.GetAsync(userId);
-    //    ViewBag.userId = userId;
-    //    ViewBag.HomeTitle = "User / Update";
-    //    var userUpdate = new UserUpdateDto()
-    //    {
-    //        FirstName = user.FirstName,
-    //        LastName = user.LastName,
-    //        Address = user.Address,
-    //        PhoneNumber = user.PhoneNumber,
-            
-    //    }
-    //}
+    [HttpGet]
+    public async Task<ViewResult> Update(long userId)
+    {
+        var user = await _userService.GetAsync(userId);
+        ViewBag.userId = userId;
+        ViewBag.HomeTitle = "User / Update";
+        var userUpdate = new UserUpdateDto()
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Address = user.Address,
+            PhoneNumber = user.PhoneNumber,
+            Image = user.ImagePath,
+        }
+    }
 }
