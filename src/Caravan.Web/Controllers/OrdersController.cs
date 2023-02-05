@@ -87,7 +87,7 @@ public class OrdersController : Controller
                 Longitude = order.DeliveryLocation.Longitude,
             },
         };
-        return View("../Orders/OrderUpdate",orderUpdate);
+        return View("../Orders/OrderUpdate", orderUpdate);
     }
 
     [HttpPost("update")]

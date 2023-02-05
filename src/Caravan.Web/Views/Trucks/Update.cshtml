@@ -10,7 +10,7 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         <form asp-controller="trucks" enctype="multipart/form-data" asp-action="Update" asp-route-truckid="@ViewBag.truckid" method="post">
-            <div class="mt-5">dv
+            <div class="mt-5">
                 <label class="required form-label text-primary">Image</label>
                 <input type="file" asp-for=Image class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
                 <span asp-validation-for="Image" class="text-danger"></span>

@@ -38,7 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Users\" />
     <Folder Include="wwwroot\media\images\NewFolder\" />
   </ItemGroup>
 
