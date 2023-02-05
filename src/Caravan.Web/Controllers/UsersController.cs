@@ -1,13 +1,12 @@
 ﻿using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers;
 
 namespace Caravan.Web.Controllers;
-public class UserController : Controller
+public class UsersController : Controller
 {
     private readonly IUserService _userService;
-    public UserController(IUserService userService)
+    public UsersController(IUserService userService)
     {
         this._userService = userService;
     }
@@ -28,7 +27,19 @@ public class UserController : Controller
             LastName = user.LastName,
             Address = user.Address,
             PhoneNumber = user.PhoneNumber,
-            Image = user.ImagePath,
+        };
+        return View("../Users/Update", userUpdate);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateAsync([FromForm] UserUpdateDto userUpdateDto, long userId)
+    {
+        if (ModelState.IsValid)
+        {
+            var user = await _userService.UpdateAsync(userId, userUpdateDto);
+            if (user) return RedirectToAction("Index", "Home", new { area = "" });
+            else return RedirectToAction("Update", "Users", new { area = "" });
         }
+        else return RedirectToAction("Update", "Users", new { area = "" });
     }
 }

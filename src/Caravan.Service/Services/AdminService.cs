@@ -1,17 +1,13 @@
 ﻿using AutoMapper;
 using Caravan.DataAccess.Interfaces.Common;
-using Caravan.Domain.Entities;
 using Caravan.Service.Common.Exceptions;
+using Caravan.Service.Common.Helpers;
 using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
 using Caravan.Service.ViewModels;
 using System.Net;
-using Caravan.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using Caravan.DataAccess.Repositories.Common;
-using Caravan.Service.Common.Helpers;
 
 namespace Caravan.Service.Services
 {

@@ -103,8 +103,6 @@ public class TrucksController : Controller
             return RedirectToAction("Index", "Trucks", new { area = "" });
         }
         return RedirectToAction("Index", "Trucks", new { area = "" });
-
-
     }
 
 }
