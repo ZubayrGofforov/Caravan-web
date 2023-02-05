@@ -18,13 +18,13 @@ namespace Caravan.Service.Services
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
         private readonly IPaginatorService _paginatorService;
-        private readonly IImageService imageService;
+        private readonly IImageService _imageService;
         private readonly AppDbContext appDbContext;
         public UserService(IMapper imapper, AppDbContext appDbContext, IPaginatorService paginatorService, IUnitOfWork unitOfWork, IImageService imageService)
         {
             this.mapper = imapper;
             this.unitOfWork = unitOfWork;
-            this.imageService = imageService;
+            this._imageService = imageService;
             this._paginatorService = paginatorService;
             this.appDbContext = appDbContext;
         }
@@ -73,7 +73,7 @@ namespace Caravan.Service.Services
             if (id == HttpContextHelper.UserId || HttpContextHelper.UserRole != "User")
             {
                 var temp = await appDbContext.Users.FindAsync(id);
-                unitOfWork.Users.TrackingDeteched(temp);
+                unitOfWork.Users.TrackingDeteched(temp!);
                 if (entity is not null)
                 {
                     var res = mapper.Map<User>(entity);
@@ -85,6 +85,7 @@ namespace Caravan.Service.Services
                     res.LastName = string.IsNullOrWhiteSpace(entity.LastName) ? temp.LastName : entity.LastName;
                     res.Address = string.IsNullOrWhiteSpace(entity.Address) ? temp.Address : entity.Address;
                     res.PhoneNumber = string.IsNullOrWhiteSpace(entity.PhoneNumber) ? temp.PhoneNumber : entity.PhoneNumber;
+                    res.ImagePath = await _imageService.SaveImageAsync(entity.Image!);
                     res.CreatedAt = temp.CreatedAt;
                     res.UpdatedAt = TimeHelper.GetCurrentServerTime();
                     appDbContext.Users.Update(res);

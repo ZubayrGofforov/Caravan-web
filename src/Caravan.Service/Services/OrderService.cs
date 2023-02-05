@@ -102,7 +102,6 @@ namespace Caravan.Service.Services
                 var res = _mapper.Map<OrderViewModel>(order);
                 //res.TakenLocation.
                 return res;
-
             }
 
             else throw new StatusCodeException(HttpStatusCode.NotFound, "Order not found");

@@ -70,7 +70,6 @@ namespace Caravan.Service.Services
             var query = _unitOfWork.Trucks.GetAll().OrderBy(x => x.CreatedAt)
                 .Select(x => _mapper.Map<TruckViewModel>(x));
             return await PagedList<TruckViewModel>.ToPagedListAsync(query, @paginationParams);
-            
         }
 
         public async Task<PagedList<TruckViewModel>> GetAllByIdAsync(long id, PaginationParams @paginationParams)
