@@ -1,77 +1,76 @@
 ﻿@using Caravan.Service.Dtos.Orders;
 @model OrderCreateDto
 
-<div class="card w-500px h-630px mt-15 mb-15" style="margin-left:auto; margin-right:auto;">
+<div class="card w-500px h-630px mt-10 mb-15" style="margin-left:auto; margin-right:auto;">
     <div class="py-10 pe-10 px-10">
         <form asp-controller="orders" enctype="multipart/form-data" asp-action="Create" method="post">
-            <label class="form-label fs-2 text-primary" style="">Order Create</label>
+            <label class="form-label fs-2 text-dark" style="">Order Create</label>
             <div class="mt-5">
-                <label class="required form-label text-primary">Order Name</label>
-                <input type="text" asp-for=Name class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">Order Name</label>
+                <input type="text" asp-for=Name class="form-control form-control-solid" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">Image</label>
-                <input type="file" asp-for=Image class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">Image</label>
+                <input type="file" asp-for=Image class="form-control form-control-solid"/>
                 <span asp-validation-for="Image" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">Order Weight</label>
-                <input type="number" asp-for=Weight class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">Order Weight</label>
+                <input type="number" asp-for=Weight class="form-control form-control-solid"/>
                 <span asp-validation-for="Weight" class="text-danger"></span>
             </div>
             <div class="mt-5">
-                <label class="required form-label text-primary">Order Size</label>
-                <input type="text" asp-for=Size class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">Order Size</label>
+                <input type="text" asp-for=Size class="form-control form-control-solid"/>
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">LocationName</label>
-                <input type="text" asp-for=LocationName class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">LocationName</label>
+                <input type="text" asp-for=LocationName class="form-control form-control-solid"/>
                 <span asp-validation-for="LocationName" class="text-danger"></span>
             </div>
             
             <div class="mt-5">
-                <label class="required form-label text-primary">Price</label>
-                <input type="number" asp-for=Price class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">Price</label>
+                <input type="number" asp-for=Price class="form-control form-control-solid"/>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">CurrentlyLocation.Latitude</label>
-                <input type="number" asp-for=CurrentlyLocation.Latitude class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">CurrentlyLocation.Latitude</label>
+                <input type="number" asp-for=CurrentlyLocation.Latitude class="form-control form-control-solid"/>
                 <span asp-validation-for="CurrentlyLocation.Latitude" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">CurrentlyLocation.Longitude</label>
-                <input type="number" asp-for=CurrentlyLocation.Longitude class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">CurrentlyLocation.Longitude</label>
+                <input type="number" asp-for=CurrentlyLocation.Longitude class="form-control form-control-solid"/>
                 <span asp-validation-for="CurrentlyLocation.Longitude" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">TransferLocation.Latitude</label>
-                <input type="number" asp-for=TransferLocation.Latitude class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">TransferLocation.Latitude</label>
+                <input type="number" asp-for=TransferLocation.Latitude class="form-control form-control-solid"/>
                 <span asp-validation-for="TransferLocation.Latitude" class="text-danger"></span>
             </div>
 
             <div class="mt-5">
-                <label class="required form-label text-primary">TransferLocation.Longitude</label>
-                <input type="number" asp-for=TransferLocation.Longitude class="form-control form-control-solid" style="backdrop-filter: blur(1px); background-color: rgba(255,255,255,0.13)" />
+                <label class="required form-label text-dark">TransferLocation.Longitude</label>
+                <input type="number" asp-for=TransferLocation.Longitude class="form-control form-control-solid"/>
                 <span asp-validation-for="TransferLocation.Longitude" class="text-danger"></span>
             </div>
 
-            <div class="form-check form-check-custom form-check-solid mt-5 ">
-                <input class="form-check-input" type="checkbox" value="" />
-                <label class="form-check-label text-primary" for="flexCheckDefault" style="color: #ffffff">
-                    I <a href="www.google.com">agree</a> to the terms of use!
-                </label>
-            </div>
-            <div class="mt-8">
+            <div class="mt-13">
                 <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="Create" />
+            </div>
+            <div class="mt-5 mb-8">
+                <a class="btn btn-secondary" asp-controller="home" asp-action="index" style="width:100%">
+                    Close
+                </a>
             </div>
         </form>
     </div>
