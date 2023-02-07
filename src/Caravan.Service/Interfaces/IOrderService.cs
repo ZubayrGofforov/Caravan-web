@@ -21,5 +21,6 @@ namespace Caravan.Service.Interfaces
         public Task<PagedList<OrderViewModel>> GetAllByIdAsync(long id, PaginationParams @paginationParams);
 
         public Task<PagedList<OrderViewModel>> GetLocationNameAsync(string locationName, PaginationParams @paginationParams);
+        public Task<PagedList<OrderViewModel>> GetSearchedAsync(string word, PaginationParams @params);
     }
 }
