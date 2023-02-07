@@ -33,12 +33,12 @@
         <!--end::Menu separator-->
         <!--begin::Menu item-->
         <div class="menu-item px-5">
-            <a asp-controller="users" asp-action="update" asp-route-userId="@Model.Id" class="menu-link px-5">My Account</a>
+            <a asp-controller="users" asp-action="get" asp-route-userId="@Model.Id" class="menu-link px-5">My Account</a>
         </div>
         <!--end::Menu item-->
         <!--begin::Menu item-->
         <div class="menu-item px-5 my-1">
-            <a href="#" class="menu-link px-5">Settings</a>
+            <a asp-controller="settings" asp-action="index" class="menu-link px-5">Settings</a>
         </div>
         <!--end::Menu item-->
         <!--begin::Menu item-->

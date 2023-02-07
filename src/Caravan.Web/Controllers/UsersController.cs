@@ -1,5 +1,6 @@
 ﻿using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
+using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Controllers;
@@ -16,11 +17,28 @@ public class UsersController : Controller
     }
 
     [HttpGet]
+    public async Task<ViewResult> Get(long userId)
+    {
+        var user = await _userService.GetAsync(userId);
+        ViewBag.UserId = userId;
+        ViewBag.HomeTitle = "My account";
+        var userView = new UserViewModel()
+        {
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Address = user.Address,
+            PhoneNumber = user.PhoneNumber,
+            Email = user.Email
+        };
+        return View("../Users/Index", user);
+    }
+
+    [HttpGet]
     public async Task<ViewResult> Update(long userId)
     {
         var user = await _userService.GetAsync(userId);
         ViewBag.userId = userId;
-        ViewBag.HomeTitle = "User / Update";
+        ViewBag.HomeTitle = "User update";
         var userUpdate = new UserUpdateDto()
         {
             FirstName = user.FirstName,
