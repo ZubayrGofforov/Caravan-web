@@ -1,9 +1,11 @@
 ﻿using Caravan.Service.Common.Helpers;
 using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
+//[Authorize("Admin")]
 public class AccountsController : BaseController
 {
     private readonly IAccountService _accountService;
