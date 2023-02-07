@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
+using Caravan.DataAccess.Migrations;
 using Caravan.Domain.Entities;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
@@ -85,7 +86,11 @@ namespace Caravan.Service.Services
                     res.LastName = string.IsNullOrWhiteSpace(entity.LastName) ? temp.LastName : entity.LastName;
                     res.Address = string.IsNullOrWhiteSpace(entity.Address) ? temp.Address : entity.Address;
                     res.PhoneNumber = string.IsNullOrWhiteSpace(entity.PhoneNumber) ? temp.PhoneNumber : entity.PhoneNumber;
-                    res.ImagePath = await _imageService.SaveImageAsync(entity.Image!);
+                    if (entity.Image is not null)
+                    {
+                        await _imageService.DeleteImageAsync(temp.ImagePath!);
+                        temp.ImagePath = await _imageService.SaveImageAsync(entity.Image);
+                    }
                     res.CreatedAt = temp.CreatedAt;
                     res.UpdatedAt = TimeHelper.GetCurrentServerTime();
                     appDbContext.Users.Update(res);

@@ -33,7 +33,7 @@
         <!--end::Menu separator-->
         <!--begin::Menu item-->
         <div class="menu-item px-5">
-            <a href="../dist/account/overview.html" class="menu-link px-5">My Account</a>
+            <a asp-controller="users" asp-action="update" asp-route-userId="@Model.Id" class="menu-link px-5">My Account</a>
         </div>
         <!--end::Menu item-->
         <!--begin::Menu item-->
