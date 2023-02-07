@@ -9,6 +9,7 @@ using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
 using Caravan.Service.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Concurrent;
 using System.Net;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -177,6 +178,18 @@ namespace Caravan.Service.Services
             }
 
             throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
+        }
+        public async Task<PagedList<OrderViewModel>> GetSearchedAsync(string word, PaginationParams @params)
+        {
+            var orders = await Task.Run(() => _unitOfWork.Orders.Where(x => x.Name.ToLower().Contains(word.ToLower())));
+            var result = await Task.Run(() => orders.Where(x => x.Name.ToLower().Contains(word.ToLower())).
+                                                    Select(x => _mapper.Map<OrderViewModel>(x)));
+            if (result is null)
+            {
+                return null!;
+            }
+            else
+                return await PagedList<OrderViewModel>.ToPagedListAsync(result, @params);
         }
     }
 }

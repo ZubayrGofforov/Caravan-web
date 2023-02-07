@@ -38,14 +38,15 @@ namespace Caravan.Service.Common.Security
             return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
         }
 
-        public string GenerateToken(Administrator administrator)
+        public string GenerateTokenAdmin(Administrator administrator)
         {
             var claims = new[]
             {
             new Claim("Id", administrator.Id.ToString()),
             new Claim("FirstName", administrator.FirstName),
             new Claim("LastName", administrator.LastName),
-            new Claim(ClaimTypes.Email, administrator.Email)
+            new Claim(ClaimTypes.Role, administrator.Role.ToString()),
+            new Claim(ClaimTypes.Email, administrator.Email),
         };
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecretKey"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);

@@ -4,9 +4,11 @@ using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Trucks;
 using Caravan.Service.Services;
 using Caravan.Service.Dtos.Users;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Caravan.Web.Areas.Administrator.Controllers
 {
+    [Authorize("Admin")]
     [Route("adminUsers")]
     public class UsersController : BaseController
     {

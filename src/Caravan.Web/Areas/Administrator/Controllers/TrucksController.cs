@@ -1,9 +1,11 @@
 ﻿using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Trucks;
 using Caravan.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
+[Authorize("Admin")]
 
 [Route("adminTrucks")]
 public class TrucksController : BaseController

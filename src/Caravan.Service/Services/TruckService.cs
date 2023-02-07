@@ -164,5 +164,17 @@ namespace Caravan.Service.Services
             }
             else throw new StatusCodeException(HttpStatusCode.BadRequest, "Not allowed");
         }
+        public async Task<PagedList<TruckViewModel>> GetSearchedAsync(string word, PaginationParams @paginationParams)
+        {
+            var trucks = await Task.Run(() => _unitOfWork.Trucks.Where(x => x.Name.ToLower().Contains(word.ToLower())));
+            var result = await Task.Run(() => trucks.Where(x => x.Name.ToLower().Contains(word.ToLower()))
+                                                    .Select(x => _mapper.Map<TruckViewModel>(x)));
+            if (result is null)
+                return null!;
+            else
+            {
+                return await PagedList<TruckViewModel>.ToPagedListAsync(result, @paginationParams);
+            }
+        }
     }
 }

@@ -2,9 +2,11 @@
 using Caravan.Service.Dtos.Locations;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
+[Authorize("Admin")]
 
 [Route("adminOrders")]
 public class OrdersController : BaseController
