@@ -1,4 +1,5 @@
-﻿using Caravan.Service.Dtos.Users;
+﻿using Caravan.Service.Dtos.Accounts;
+using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
 using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +8,12 @@ namespace Caravan.Web.Controllers;
 public class UsersController : Controller
 {
     private readonly IUserService _userService;
-    public UsersController(IUserService userService)
+    private readonly IAccountService _accountService;
+
+    public UsersController(IUserService userService, IAccountService accountService)
     {
         this._userService = userService;
+        this._accountService = accountService;
     }
     public IActionResult Index()
     {
@@ -59,5 +63,62 @@ public class UsersController : Controller
             else return RedirectToAction("Update", "Users", new { area = "" });
         }
         else return RedirectToAction("Update", "Users", new { area = "" });
+    }
+
+    // View lari yozilmagan Parolini bilganda yangilash -->
+    [HttpGet]
+    public async Task<ViewResult> UpdatePasswordAsync()
+    {
+        return View("UpdatePassword");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdatePassword(PasswordUpdateDto passwordUpdateDto)
+    {
+        if (ModelState.IsValid)
+        {
+            var result = await _accountService.PasswordUpdateAsync(passwordUpdateDto);
+            if (result) return RedirectToAction();
+            else return RedirectToAction();
+        }
+        else return RedirectToAction();
+    }
+    // <--
+
+    // View lari yozilmagan Emailga code jo'natish
+    [HttpGet]
+    public async Task<ViewResult> SendEmailAsync()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> SendEmailAsync(SendToEmailDto sendToEmailDto)
+    {
+        if (ModelState.IsValid)
+        {
+            await _accountService.SendCodeAsync(sendToEmailDto);
+            return RedirectToAction();
+        }
+        else return RedirectToAction();
+    }
+    // <--
+
+    [HttpGet]
+    public async Task<ViewResult> ForgetPasswordAsync()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ForgetPasswordAsync(UserResetPasswordDto resetPasswordDto)
+    {
+        if (ModelState.IsValid)
+        {
+            var res = await _accountService.VerifyPasswordAsync(resetPasswordDto);
+            if (res) return RedirectToAction();
+
+            else return RedirectToAction();
+        }
+        else return RedirectToAction();
     }
 }
