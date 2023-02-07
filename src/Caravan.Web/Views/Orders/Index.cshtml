@@ -4,12 +4,6 @@
     @{
         foreach (var order in Model)
         {
-<<<<<<< HEAD
-            <div class="col-lg-4 card min-h-300px mb-5 me-5" style="width: 300px">
-                <a asp-controller="orders" asp-action="get" asp-route-orderId="@order.Id">
-                    <div class="w-250px h-250px mt-3" style="display: flex; justify-content: center">
-                        <img src="~/@order.ImagePath" class="card-rounded justify-content: center w-100% h-200px" />
-=======
             <div class="col-lg-4 card min-h-300px mt-10 me-5 mx-5 shadow-sm" style="width: 300px">
                 <div class="mb-5 mt-5">
                     <a asp-controller="orders" asp-action="get" asp-route-orderId="@order.Id">
@@ -46,7 +40,6 @@
                             </span>
                             <span class="fs-5 fw-normal text-gray-600">@order.LocationName</span>
                         </div>
->>>>>>> 1d48c3e (dawdawdfawf)
                     </div>
                 </div>
             </div>
