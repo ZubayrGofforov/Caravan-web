@@ -1,6 +1,8 @@
 ﻿using Caravan.Service.Dtos.Accounts;
 using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
+using Caravan.Service.Interfaces.Common;
+using Caravan.Service.Services;
 using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +11,13 @@ public class UsersController : Controller
 {
     private readonly IUserService _userService;
     private readonly IAccountService _accountService;
+    private readonly IIdentityService _identityService;
 
-    public UsersController(IUserService userService, IAccountService accountService)
+    public UsersController(IUserService userService, IAccountService accountService, IIdentityService identityService)
     {
         this._userService = userService;
         this._accountService = accountService;
+        this._identityService = identityService;
     }
     public IActionResult Index()
     {
@@ -38,8 +42,9 @@ public class UsersController : Controller
     }
 
     [HttpGet]
-    public async Task<ViewResult> Update(long userId)
+    public async Task<ViewResult> Update()
     {
+        var userId = _identityService.Id!.Value;
         var user = await _userService.GetAsync(userId);
         ViewBag.userId = userId;
         ViewBag.HomeTitle = "User update";
@@ -66,7 +71,7 @@ public class UsersController : Controller
     }
 
     // View lari yozilmagan Parolini bilganda yangilash -->
-    [HttpGet]
+    [HttpGet]   
     public async Task<ViewResult> UpdatePasswordAsync()
     {
         return View("UpdatePassword");
@@ -79,9 +84,9 @@ public class UsersController : Controller
         {
             var result = await _accountService.PasswordUpdateAsync(passwordUpdateDto);
             if (result) return RedirectToAction("Index", "settings");
-            else return RedirectToAction();
+            else return await UpdatePasswordAsync();
         }
-        else return RedirectToAction();
+        else return await UpdatePasswordAsync();
     }
     // <--
 
@@ -99,7 +104,7 @@ public class UsersController : Controller
             await _accountService.SendCodeAsync(sendToEmailDto);
             return RedirectToAction("ForgetPassword", "Users");
         }
-        else return RedirectToAction();
+        else return await SendEmailAsync();
     }
     // <--
 
@@ -117,8 +122,32 @@ public class UsersController : Controller
             var res = await _accountService.VerifyPasswordAsync(resetPasswordDto);
             if (res) return RedirectToAction("Index", "settings");
 
-            else return RedirectToAction();
+            else return await ForgetPasswordAsync();
         }
-        else return RedirectToAction();
+        else return await ForgetPasswordAsync();
+    }
+
+    [HttpGet()]
+    public async Task<ViewResult> UserDeleteAsync()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UserDeleteAsync(UserDeleteDto userDeleteDto)
+    {
+        if (ModelState.IsValid)
+        {
+            var userId = _identityService.Id!.Value;
+            var res = await _accountService.DeleteByPasswordAsync(userDeleteDto);
+            if (res)
+            {
+                var result = await _userService.DeleteAsync(userId);
+                if (result) return RedirectToAction("Index", "Home", new { area = "" });
+                else return await UserDeleteAsync();
+            }
+            else return await UserDeleteAsync();
+        }
+        else return await UserDeleteAsync();
     }
 }

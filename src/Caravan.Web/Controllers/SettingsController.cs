@@ -7,8 +7,9 @@ namespace Caravan.Web.Controllers
     [Route("settings")]
     public class SettingsController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(long userId)
         {
+            ViewBag.userSettingId=userId;
             return View();
         }
     }

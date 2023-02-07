@@ -7,6 +7,7 @@ using Caravan.Service.Common.Security;
 using Caravan.Service.Dtos.Accounts;
 using Caravan.Service.Dtos.Admins;
 using Caravan.Service.Dtos.Common;
+using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
 using Caravan.Service.Interfaces.Security;
@@ -54,6 +55,17 @@ namespace Caravan.Service.Services
             _repository.Administrators.Add(admin);
             var result = await _repository.SaveChangesAsync();
             return result > 0;
+        }
+
+        public async Task<bool> DeleteByPasswordAsync(UserDeleteDto userDeleteDto)
+        {
+            var user = await _repository.Users.FindByIdAsync(HttpContextHelper.UserId);
+            if (user is null) throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
+
+            var res = PasswordHasher.Verify(userDeleteDto.Password, user.Salt, user.PasswordHash);
+            if(res == false) throw new StatusCodeException(HttpStatusCode.NotFound, "Password is incorrect!");
+
+            return true;
         }
 
         public async Task<string> LoginAsync(AccountLoginDto loginDto)
