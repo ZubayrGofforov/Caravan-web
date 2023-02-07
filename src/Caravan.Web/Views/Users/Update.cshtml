@@ -3,7 +3,7 @@
 
 <div class="card w-500px h-630px mt-10 mb-10" style="border: 2px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); margin-left:auto; margin-right:auto; background-color: rgba(255,255,255,0.13); box-shadow: 0 0 40px rgba(8,7,16,0.6);">
     <div class="py-10 pe-10 px-10">
-        <form asp-controller="users" asp-action="update" method="post">
+        <form asp-controller="users" asp-action="update" asp-route-userId="@ViewBag.userId" method="post">
             <label class="form-label fs-2" style="">User Update</label>
             <div class="mt-5">
                 <label class="required form-label">First Name</label>
