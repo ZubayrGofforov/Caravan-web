@@ -34,9 +34,8 @@ public class TrucksController : Controller
         ViewBag.HomeTitle = "Trucks / Get";
         return View(truck);
     }
-    [HttpGet("ownerid")]
-    public async Task<ViewResult> GetOwnerIdAsync( int page = 1)
-    
+    [HttpGet("OwnerTrucks")]
+    public async Task<ViewResult> GetOwnerIdAsync(int page = 1)
     {
         long ownerid = HttpContextHelper.UserId;
         var trucks = await _service.GetAllByIdAsync(ownerid, new PaginationParams(page,_pageSize));
