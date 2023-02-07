@@ -1,5 +1,6 @@
 ﻿using Caravan.Service.Dtos.Accounts;
 using Caravan.Service.Dtos.Admins;
+using Caravan.Service.Dtos.Users;
 
 namespace Caravan.Service.Interfaces
 {
@@ -11,5 +12,6 @@ namespace Caravan.Service.Interfaces
         public Task<string> LoginAsync(AccountLoginDto loginDto);
         public Task SendCodeAsync(SendToEmailDto sendToEmail);
         public Task<bool> VerifyPasswordAsync(UserResetPasswordDto userResetPassword);
+        public Task<bool> DeleteByPasswordAsync(UserDeleteDto userDeleteDto);
     }
 }
