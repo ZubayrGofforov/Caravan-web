@@ -70,8 +70,6 @@ public class TrucksController : BaseController
             return RedirectToAction("Index", "Trucks",  new { area = "Adminstrator" });
         }
         return RedirectToAction("Index", "Trucks", new { area = "Adminstrator" });
-
-
     }
 
 }
