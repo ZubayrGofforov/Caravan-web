@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Caravan.Web.Controllers;
-
 [Authorize]
 public class HomeController : Controller
 {
