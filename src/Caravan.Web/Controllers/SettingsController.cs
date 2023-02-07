@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Controllers
 {
+    [Authorize]
     [Route("settings")]
     public class SettingsController : Controller
     {

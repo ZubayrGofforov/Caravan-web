@@ -118,6 +118,11 @@ namespace Caravan.Service.Services
 
         public async Task SendCodeAsync(SendToEmailDto sendToEmail)
         {
+            var user = await _repository.Users.FindByIdAsync(HttpContextHelper.UserId);
+            if(user is null) throw new StatusCodeException(HttpStatusCode.NotFound, "User not found!");
+
+            if(user.Email != sendToEmail.Email) throw new StatusCodeException(HttpStatusCode.BadRequest, "This email does not belong to you!");
+
             int code = new Random().Next(100000, 999999);
             _memoryCache.Set(sendToEmail.Email, code, TimeSpan.FromMinutes(10));
 
@@ -135,6 +140,8 @@ namespace Caravan.Service.Services
         {
             var user = await _repository.Users.GetByEmailAsync(userResetPassword.Email);
             if (user == null) throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
+
+            if (user.Email != userResetPassword.Email) throw new StatusCodeException(HttpStatusCode.BadRequest, "This email does not belong to you!");
 
             if (_memoryCache.TryGetValue(userResetPassword.Email, out int expectedCode) is false)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, "Code is expired");

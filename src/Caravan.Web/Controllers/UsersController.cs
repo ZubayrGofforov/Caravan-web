@@ -78,7 +78,7 @@ public class UsersController : Controller
         if (ModelState.IsValid)
         {
             var result = await _accountService.PasswordUpdateAsync(passwordUpdateDto);
-            if (result) return RedirectToAction();
+            if (result) return RedirectToAction("Index", "settings");
             else return RedirectToAction();
         }
         else return RedirectToAction();
@@ -97,7 +97,7 @@ public class UsersController : Controller
         if (ModelState.IsValid)
         {
             await _accountService.SendCodeAsync(sendToEmailDto);
-            return RedirectToAction();
+            return RedirectToAction("ForgetPassword", "Users");
         }
         else return RedirectToAction();
     }
@@ -115,7 +115,7 @@ public class UsersController : Controller
         if (ModelState.IsValid)
         {
             var res = await _accountService.VerifyPasswordAsync(resetPasswordDto);
-            if (res) return RedirectToAction();
+            if (res) return RedirectToAction("Index", "settings");
 
             else return RedirectToAction();
         }
