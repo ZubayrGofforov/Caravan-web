@@ -3,14 +3,13 @@ using Caravan.Service.Common.Utils;
 using Caravan.Service.Dtos.Locations;
 using Caravan.Service.Dtos.Orders;
 using Caravan.Service.Interfaces;
-using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Controllers;
 
 [Route("orders")]
-[Authorize(Roles ="User")]
+[Authorize(Roles = "User")]
 public class OrdersController : Controller
 {
     private readonly IOrderService _orderService;
@@ -35,7 +34,7 @@ public class OrdersController : Controller
     }
 
     [HttpGet("OwnerOrders")]
-    public async Task<ViewResult> GetAllByIdAsync(int page = 1)    
+    public async Task<ViewResult> GetAllByIdAsync(int page = 1)
     {
         long ownerId = HttpContextHelper.UserId;
         var orders = await _orderService.GetAllByIdAsync(ownerId, new PaginationParams(page, _pageSize));
