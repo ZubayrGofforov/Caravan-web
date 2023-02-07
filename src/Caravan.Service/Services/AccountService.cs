@@ -49,6 +49,7 @@ namespace Caravan.Service.Services
             admin.ImagePath = await _imageService.SaveImageAsync(dto.Image!);
             admin.PasswordHash = hashresult.passwordHash;
             admin.Salt = hashresult.salt;
+            admin.Role = Domain.Enums.UserRole.Admin;
             admin.CreatedAt = TimeHelper.GetCurrentServerTime();
             admin.UpdatedAt = TimeHelper.GetCurrentServerTime();
             _repository.Administrators.Add(admin);
