@@ -44,7 +44,7 @@
                     <div class="aside-nav d-flex flex-column flex-column-fluid w-100 pt-5 pt-lg-0 bg-gradient: #181C32" id="kt_aside_nav">
                         <!--begin::Primary menu-->
                         <div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold fs-5" data-kt-menu="true">
-                            <div class="menu-item py-2">
+                            <div class="menu-item py-2 text-center">
                                 <a class="menu-link menu-center" asp-controller="Home" asp-action="Index" title="Home" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                     <span class="menu-icon me-0">
                                         <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/jet/html/releases/2023-01-23-171716/core/html/src/media/icons/duotune/ecommerce/ecm009.svg-->
@@ -63,8 +63,9 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
+                                Home
                             </div>
-                            <div class="menu-item py-2">
+                            <div class="menu-item py-2 text-center">
                                 <a class="menu-link menu-center" asp-controller="Orders" asp-action="Index" title="Orders" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                     <span class="menu-icon me-0">
                                         <!--begin::Svg Icon | path: icons/duotone/Shopping/Box2.svg-->
@@ -80,9 +81,10 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
+                                Orders
                             </div>
 
-                            <div class="menu-item py-2">
+                            <div class="menu-item py-2 text-center">
                                 <a class="menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Trucks" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                     <span class="menu-icon me-0">
                                         <!--begin::Svg Icon | path: icons/duotone/Shopping/Chart.svg-->
@@ -95,6 +97,7 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
+                                Trucks
                             </div>
                         </div>
                         <!--end::Primary menu-->
@@ -358,7 +361,7 @@
                                         <!--end:Item-->
                                         <!--begin:Item-->
                                         <div class="col-6">
-                                            <a asp-controller="orders" asp-action="ownerOrders" class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-end">
+                                            <a asp-controller="Orders" asp-action="OwnerOrders" class="d-flex flex-column flex-center h-100 p-6 bg-hover-light border-end">
                                                 <!--begin::Svg Icon | path: icons/duotone/Shopping/Box2.svg-->
                                                 <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -377,7 +380,7 @@
                                         <!--end:Item-->
                                         <!--begin:Item-->
                                         <div class="col-6">
-                                            <a asp-controller="trucks" asp-action="OwnerTrucks" class="d-flex flex-column flex-center h-100 p-6 bg-hover-light">
+                                            <a asp-controller="Trucks" asp-action="OwnerTrucks" class="d-flex flex-column flex-center h-100 p-6 bg-hover-light">
                                                 <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/ceres/html/releases/2023-01-23-171327/core/html/src/media/icons/duotune/ecommerce/ecm006.svg-->
                                                 <span class="svg-icon svg-icon-primary svg-icon-2hx">
                                                     <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
