@@ -35,18 +35,18 @@
                 <div class="aside-primary d-flex flex-column align-items-lg-center flex-row-auto">
                     <!--begin::Logo-->
                     <div class="aside-logo d-none d-lg-flex flex-column align-items-center flex-column-auto pt-10">
-                        <a asp-controller="Home" asp-action="Index">
+                        <a asp-controller="settings" asp-action="Index">
                             <img alt="Logo" src="~/media/logos/caravanlogo.jpg" class="h-55px" />
                         </a>
                     </div>
                     <!--end::Logo-->
                     <!--begin::Nav-->
-                    <div class="aside-nav d-flex flex-center flex-column flex-column-fluid w-100 pt-5 pt-lg-0" id="kt_aside_nav">
+                    <div class="aside-nav d-flex flex-column flex-column-fluid w-100 pt-5 pt-lg-0" id="kt_aside_nav">
                         <!--begin::Primary menu-->
                         <div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold fs-5" data-kt-menu="true">
-                            <div class="menu-item py-2">
-                                <a class="menu-link menu-center" asp-controller="Users" asp-action="Update" title="Account" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                    <span class="menu-icon me-0">
+                            <div class="menu-item py-2 text-center">
+                                <a class="menu-link menu-center" asp-controller="Users" asp-action="Update" title="Update" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-icon me-0 mt-21">
                                         <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/communication/com013.svg-->
                                         <span class="svg-icon svg-icon-muted svg-icon-2hx">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,10 +57,30 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
+                                Account
                             </div>
 
-                            <div class="menu-item py-2">
-                                <a class="menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Gmail" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                            <div class="menu-item py-2 text-center">
+                                <a class="menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Update" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-icon me-0">
+                                        <span class="svg-icon svg-icon-primary svg-icon-2hx">
+                                            <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Key.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <polygon fill="#000000" opacity="0.3" transform="translate(8.885842, 16.114158) rotate(-315.000000) translate(-8.885842, -16.114158) " points="6.89784488 10.6187476 6.76452164 19.4882481 8.88584198 21.6095684 11.0071623 19.4882481 9.59294876 18.0740345 10.9659914 16.7009919 9.55177787 15.2867783 11.0071623 13.8313939 10.8837471 10.6187476" />
+                                                    <path d="M15.9852814,14.9852814 C12.6715729,14.9852814 9.98528137,12.2989899 9.98528137,8.98528137 C9.98528137,5.67157288 12.6715729,2.98528137 15.9852814,2.98528137 C19.2989899,2.98528137 21.9852814,5.67157288 21.9852814,8.98528137 C21.9852814,12.2989899 19.2989899,14.9852814 15.9852814,14.9852814 Z M16.1776695,9.07106781 C17.0060967,9.07106781 17.6776695,8.39949494 17.6776695,7.57106781 C17.6776695,6.74264069 17.0060967,6.07106781 16.1776695,6.07106781 C15.3492424,6.07106781 14.6776695,6.74264069 14.6776695,7.57106781 C14.6776695,8.39949494 15.3492424,9.07106781 16.1776695,9.07106781 Z" fill="#000000" transform="translate(15.985281, 8.985281) rotate(-315.000000) translate(-15.985281, -8.985281) " />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>
+                                    </span>
+                                </a>
+                                Password
+                            </div>
+
+                            <div class="menu-item py-2 text-center">
+                                <a class="menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Update" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                     <span class="menu-icon me-0">
                                         <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/communication/com011.svg-->
                                         <span class="svg-icon svg-icon-muted svg-icon-2hx">
@@ -72,6 +92,24 @@
                                         <!--end::Svg Icon-->
                                     </span>
                                 </a>
+                                Gmail
+                            </div>
+
+                            <div class="menu-item py-2 text-center">
+                                <a class="menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Account" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="menu-icon me-0">
+                                        <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/metronic/html/releases/2023-01-26-051612/core/html/src/media/icons/duotune/general/gen027.svg-->
+                                        <span class="svg-icon svg-icon-muted svg-icon-2hx">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
+                                                <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
+                                                <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                </a>
+                                Delete
                             </div>
                         </div>
                         <!--end::Primary menu-->
