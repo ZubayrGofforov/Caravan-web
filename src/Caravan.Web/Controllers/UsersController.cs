@@ -52,8 +52,8 @@ public class UsersController : Controller
         {
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Address = user.Address,
             PhoneNumber = user.PhoneNumber,
+            Address = user.Address
         };
         return View("../Users/Update", userUpdate);
     }

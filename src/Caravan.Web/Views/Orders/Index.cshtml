@@ -4,29 +4,32 @@
     @{
         foreach (var order in Model)
         {
-            <div class="col-lg-4 card min-h-300px mt-10 me-5 mx-5 shadow-sm" style="width: 300px">
+            <div class="col-lg-4 card min-h-300px mt-15 me-5 mx-5" style="width: 300px">
                 <div class="mb-5 mt-5">
                     <a asp-controller="orders" asp-action="get" asp-route-orderId="@order.Id">
                         <div class="image-center w-280px h-250px" style="display: flex; justify-content: center">
                             <img src="~/@order.ImagePath" class="card-rounded mw-100 min-w-100 min-h-100 mh-sm-100" />
                         </div>
                     </a>
-                    <div class="ms-2 mt-3">
+                    <div class="ms-2 mt-3 text-center">
                         <span class="fs-2 fw-bold text-black-800">@order.Name</span>
                     </div>
                     <div class="ms-3">
                         @if (order.IsTaken)
                         {
-                            <span class="fs-5 fw-normal text-gray-600">Status: Empty</span>
+                            <span class="fs-5 fw-normal text-gray-600">Empty</span>
                         }
                         else
                         {
-                            <span class="fs-5 fw-normal text-gray-600">Status: Busy</span>
+                            <span class="fs-5 fw-normal text-gray-600">Busy</span>
                         }
+                    </div>
+                    <div class="ms-2">
+                        <span class="fs-2 fw-normal text-gray-600">@order.Price so'm</span>
                     </div>
                     <div class="d-flex flex-row justify-content-between">
                         <div class="ms-3 row-cols-2">
-                            <span class="fs-5 fw-normal text-gray-600">Price: @order.Price so'm </span>
+                            <span class="fs-5 fw-normal text-gray-600">@order.User.PhoneNumber</span>
                         </div>
                         <div class="row-cols-2 text-sm-end">
                             <span class="svg-icon svg-icon-primary svg-icon-2x">

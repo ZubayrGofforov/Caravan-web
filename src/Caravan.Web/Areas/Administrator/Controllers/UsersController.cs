@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Caravan.Web.Areas.Administrator.Controllers
 {
-    [Authorize("Admin")]
     [Route("adminUsers")]
     public class UsersController : BaseController
     {
@@ -40,6 +39,7 @@ namespace Caravan.Web.Areas.Administrator.Controllers
             ViewBag.HomeTitle = "user / Get / Update";
             return View("UserUpdate", upuser);
         }
+        
         [HttpGet("Delete")]
         public async Task<IActionResult> DeleteAsync(long userid)
         {

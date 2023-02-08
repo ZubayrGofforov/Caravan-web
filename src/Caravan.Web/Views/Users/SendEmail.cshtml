@@ -13,15 +13,13 @@
                 <input type="email" asp-for=Email class="form-control form-control-solid" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="mt-6 mb-6 d-flex flex-row justify-content-between">
-                <div class="row-cols-2 ms-2">
-                    <a class="btn btn-secondary" style="width:100%;" asp-controller="Settings" asp-action="Index">
-                        CLOSE
-                    </a>
-                </div>
-                <div class="row-cols-2 me-2">
-                    <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="SEND CODE" />
-                </div>
+            <div class="row-cols-2 me-2">
+                <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="SEND CODE" />
+            </div>
+            <div class="row-cols-2 ms-2">
+                <a class="btn btn-secondary" style="width:100%;" asp-controller="Settings" asp-action="Index">
+                    CLOSE
+                </a>
             </div>
         </form>
     </div>

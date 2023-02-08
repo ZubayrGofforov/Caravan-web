@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 
 namespace Caravan.Web.Areas.Administrator.Controllers;
-[Authorize("Admin")]
 
 public class HomeController : BaseController
 {

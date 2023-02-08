@@ -4,7 +4,7 @@
     @{
         foreach (var order in Model)
         {
-            <div class="col-lg-4 card min-h-300px mb-5 me-5 shadow-sm" style="width: 300px">
+            <div class="col-lg-4 card min-h-300px mb-5 me-5" style="width: 300px">
                 <a asp-action="get" asp-controller="orders" asp-route-orderId="@order.Id">
                     <div class="w-250px h-250px mt-3" style="display: flex; justify-content: center">
                         <img src="~/@order.ImagePath" class="card-rounded justify-content: center w-200px h-200px" />
