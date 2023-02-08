@@ -5,15 +5,42 @@
     @{
         foreach (var truck in Model)
         {
-            <div class="col-lg-4 card min-h-300px mb-5 me-5" style="width: 270px">
-                <div class="mt-5 mb-5 ">
-                    <div class="w-200px h-200px" style="display: flex;justify-content: center">
-                         <a asp-action="get" asp-controller="trucks" asp-route-id="@truck.Id">
-                            <img src="~/@truck.ImagePath" class="card-rounded justify-content: center w-200px h-200px" />
-                         </a>
+            <div class = "col-lg-4 card min-h-300px mt-5 me-5 mx-5" style="width: 300px">
+                <div class="mb-5 mt-5">
+                    <a asp-controller="trucks" asp-action="get" asp-route-orderId="@truck.Id">
+                        <div class="image-center w-280px h-250px" style="display: flex; justify-content: center">
+                            <img src="~/@truck.ImagePath" class="card-rounded mw-100 min-w-100 min-h-100 mh-sm-100" />
+                        </div>
+                    </a>
+                    <div class="ms-2 mt-3">
+                        <span class="fs-2 fw-bold text-black-800">@truck.Name</span>
                     </div>
-                    <div class="text-center">
-                        <span class="fs-5 fw-bold text-gray-600">@truck.Name</span>
+                    <div class="ms-3">
+                        @if (truck.IsEmpty)
+                        {
+                            <span class="fs-5 fw-normal text-gray-600">Empty</span>
+                        }
+                        else
+                        {
+                            <span class="fs-5 fw-normal text-gray-600">Busy</span>
+                        }
+                    </div>
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="ms-3 row-cols-2">
+                            <span class="fs-5 fw-normal text-gray-600">@truck.User.PhoneNumber</span>
+                        </div>
+                        <div class="row-cols-2 text-sm-end">
+                            <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo2/dist/../src/media/svg/icons/Map/Marker1.svg-->
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="0" y="0" width="24" height="24" />
+                                        <path d="M5,10.5 C5,6 8,3 12.5,3 C17,3 20,6.75 20,10.5 C20,12.8325623 17.8236613,16.03566 13.470984,20.1092932 C12.9154018,20.6292577 12.0585054,20.6508331 11.4774555,20.1594925 C7.15915182,16.5078313 5,13.2880005 5,10.5 Z M12.5,12 C13.8807119,12 15,10.8807119 15,9.5 C15,8.11928813 13.8807119,7 12.5,7 C11.1192881,7 10,8.11928813 10,9.5 C10,10.8807119 11.1192881,12 12.5,12 Z" fill="#000000" fill-rule="nonzero" />
+                                    </g>
+                                </svg><!--end::Svg Icon-->
+                            </span>
+                            <span class="fs-5 fw-normal text-gray-600">@truck.LocationName</span>
+                        </div>
                     </div>
                 </div>
             </div>
