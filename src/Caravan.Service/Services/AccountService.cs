@@ -71,31 +71,28 @@ namespace Caravan.Service.Services
 
         public async Task<string> LoginAsync(AccountLoginDto loginDto)
         {
-            var user = await _repository.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email);
-            if (user is null)
+            var admin = await _repository.Administrators.FirstOrDefaultAsync(x => x.Email == loginDto.Email);
+            if (admin is null)
             {
-                var admin = await _repository.Administrators.FirstOrDefaultAsync(x => x.Email == loginDto.Email);
-                if(admin is null)
-                    throw new StatusCodeException(HttpStatusCode.NotFound, " not found wrong!");
-                var hashresult = PasswordHasher.Verify(loginDto.Password, admin.Salt, admin.PasswordHash);
-                if (hashresult)
-                {
-                    return _authManager.GenerateTokenAdmin(admin);
-                }
-                else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is wrong!");
+                var user = await _repository.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email);
+                if(user is null) throw new StatusCodeException(HttpStatusCode.NotFound, " Not found wrong!");
 
-
-            }
-            else
-            {
-                var hasherResult = PasswordHasher.Verify(loginDto.Password, user.Salt, user.PasswordHash);
-                if (hasherResult)
+                var hashResult = PasswordHasher.Verify(loginDto.Password, user.Salt, user.PasswordHash);
+                if (hashResult)
                 {
                     return _authManager.GenerateToken(user);
                 }
                 else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is wrong!");
+            }
+            else
+            {
+                var hashResult = PasswordHasher.Verify(loginDto.Password, admin.Salt, admin.PasswordHash);
+                if (hashResult)
+                {
+                    return _authManager.GenerateTokenAdmin(admin);
                 }
-           
+                else throw new StatusCodeException(HttpStatusCode.BadRequest, "Password is wrong!");
+            }
         }
 
         public async Task<bool> PasswordUpdateAsync(PasswordUpdateDto passwordUpdateDto)
