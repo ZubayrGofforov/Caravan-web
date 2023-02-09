@@ -44,9 +44,9 @@
                     <div class="aside-nav d-flex flex-column flex-column-fluid w-100 pt-5 pt-lg-0 bg-gradient: #181C32" id="kt_aside_nav">
                         <!--begin::Primary menu-->
                         <div id="kt_aside_menu" class="menu menu-column menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold fs-5" data-kt-menu="true">
-                            <div class="menu-item py-2 text-center">
-                                <a class="menu-link menu-center" asp-controller="Home" asp-action="Index" title="Home" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
-                                    <span class="menu-icon me-0">
+                            <div class="menu-item py-2 text-center text-gray-600">
+                                <a class="btn btn-icon btn-light pulse pulse-dark menu-link menu-center mt-21" asp-controller="Home" asp-action="Index" title="Home" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                                    <span class="svg-icon svg-icon-1">
                                         <!--begin::Svg Icon | path: /var/www/preview.keenthemes.com/kt-products/docs/jet/html/releases/2023-01-23-171716/core/html/src/media/icons/duotune/ecommerce/ecm009.svg-->
                                         <span class="svg-icon svg-icon-muted svg-icon-2hx mt-21">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -62,14 +62,16 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
+                                    <span class="pulse-ring"></span>
                                 </a>
-                                Home
                             </div>
-                            <div class="menu-item py-2 text-center">
-                                <a class="menu-link menu-center" asp-controller="Orders" asp-action="Index" title="Orders" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                            <h4 class="text-center text-gray-600">Home</h4>
+
+                            <div class="menu-item py-2 text-center text-gray-600">
+                                <a class="btn btn-icon btn-light pulse pulse-dark menu-link menu-center" asp-controller="Orders" asp-action="Index" title="Orders" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                     <span class="menu-icon me-0">
                                         <!--begin::Svg Icon | path: icons/duotone/Shopping/Box2.svg-->
-                                        <span class="svg-icon svg-icon-3x svg-icon-primary mb-2">
+                                        <span class="svg-icon svg-icon-3x svg-icon-primary">
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                     <rect x="0" y="0" width="24" height="24" />
@@ -80,12 +82,13 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
+                                    <span class="pulse-ring"></span>
                                 </a>
-                                Orders
                             </div>
+                            <h4 class="text-center text-gray-600">Orders</h4>
 
-                            <div class="menu-item py-2 text-center">
-                                <a class="menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Trucks" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                            <div class="menu-item py-2 text-center text-gray-600">
+                                <a class="btn btn-icon btn-light pulse pulse-dark menu-link menu-center" asp-controller="Trucks" asp-action="Index" title="Trucks" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                                     <span class="menu-icon me-0">
                                         <!--begin::Svg Icon | path: icons/duotone/Shopping/Chart.svg-->
                                         <span class="svg-icon svg-icon-muted svg-icon-2hx">
@@ -96,16 +99,17 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
+                                    <span class="pulse-ring"></span>
                                 </a>
-                                Trucks
                             </div>
+                            <h4 class="text-center text-gray-600">Trucks</h4>
                         </div>
                         <!--end::Primary menu-->
                     </div>
                     <!--end::Nav-->
 
                     <div class="wrap-link">
-                        <a asp-controller="trucks" asp-action="create" title="Truck" class="linkOne" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                        <a asp-controller="trucks" asp-action="create" title="Truck" class="linkOne text-gray-700 text-hover-white" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                             <!--begin::Svg Icon -->
                             <span class="svg-icon svg-icon-muted svg-icon-1hx">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +120,7 @@
                             <!--end::Svg Icon-->
                             Create
                         </a>
-                        <a asp-controller="orders" asp-action="create" title="Order" class="linkOne" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                        <a asp-controller="orders" asp-action="create" title="Order" class="linkOne text-gray-700 text-hover-white" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
                             <!--begin::Svg Icon -->
                             <span class="svg-icon svg-icon-1hx svg-icon-secundary mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -415,15 +419,15 @@
                     <!--begin::Container-->
                     <div class="container" id="kt_content_container">
                         <!--begin::Row-->
-                            @*<div class="card card-xxl-stretch mb-5 mb-xxl-8">*@
-                            <div class="card card-xxl-stretch mb-5 mb-xxl-8" style="background-color: #F1F4FD">
-                                <!--begin::Card header-->
-                                <div class="card-header border-0 pt-5">
-                                    <div class="card-body p-0">
-                                        @RenderBody()
-                                    </div>
+                        @*<div class="card card-xxl-stretch mb-5 mb-xxl-8">*@
+                        <div class="card card-xxl-stretch mb-5 mb-xxl-8" style="background-color: #F1F4FD">
+                            <!--begin::Card header-->
+                            <div class="card-header border-0 pt-5">
+                                <div class="card-body p-0">
+                                    @RenderBody()
                                 </div>
                             </div>
+                        </div>
                         <!--end::Row-->
                     </div>
                     <!--end::Container-->
