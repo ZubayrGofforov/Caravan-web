@@ -11,7 +11,6 @@ namespace Caravan.DataAccess.DbContexts
             : base(options)
         {
         }
-
         public virtual DbSet<User> Users { get; set; } = default!;
         public virtual DbSet<Administrator> Administrators { get; set; } = default!;
         public virtual DbSet<Truck> Trucks { get; set; } = default!;

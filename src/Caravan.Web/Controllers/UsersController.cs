@@ -2,7 +2,6 @@
 using Caravan.Service.Dtos.Users;
 using Caravan.Service.Interfaces;
 using Caravan.Service.Interfaces.Common;
-using Caravan.Service.Services;
 using Caravan.Service.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

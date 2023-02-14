@@ -1,52 +1,67 @@
 ﻿@using Caravan.Service.ViewModels;
 @model OrderViewModel
 
-<div class="d-flex flex-row">
-    <div class="row-cols-2">
-        <img class="w-300px h-300px mb-3 card-rounded" src="~/@Model.ImagePath" alt="@Model.Name" />
+<div class="card d-flex flex-row h-500px w-300 mt-10 me-5 mx-5 mb-15">
+    @*<label class="fa fa-genderless h6 fs-1 mt-10">@Model.Name</label>*@
+    <div class="d-flex flex-row justify-content-between flex-md-center align-content-lg-center ms-20">
+        <div class="row-cols-2 ms-20">
+            <img class="w-300px h-300px mb-3 card-rounded shadow1" src="~/@Model.ImagePath" alt="@Model.Name" />
+        </div>
+
+        <div class="row-cols-2 mx-10 bg-white pt-5 px-10 pb-10 pe-10 min-h-300px ms-20">
+            <table class="table mb-3">
+                <thead>
+                    <tr class="border-bottom fs-6 fw-bolder text-gray-700">
+                        <th class="min-w-175px pb-2"><span class="badge badge-warning mx-2">*</span></th>
+                        <th class="min-w-100px text-end pb-2">Quantity</th>
+                        <th class="min-w-60px text-end pb-2">Unitx</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center pt-6">
+                            <i class="badge badge-dark fs-2 me-2"></i>Weight :
+                        </td>
+                        <td class="pt-6 text-gray-500 fw-boldest">
+                            @Model.Weight
+                        </td>
+                        <td>
+                            <span class="badge badge-warning mx-2">t</span>
+                        </td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Size :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.Size
+                        </td>
+                        <td><span class="badge badge-warning mx-2">m3</span></td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Price :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.Price
+                        </td>
+                        <td><span class="badge badge-warning mx-2">uzs</span></td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Is Taken :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.IsTaken
+                        </td>
+                        <td><span class="badge badge-danger mx-2">s</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="row-cols-2 mx-10 bg-white pt-5 px-10 pb-10 pe-10 min-h-300px">
-        <label class="fa fa-genderless fs-3 me-3">@Model.Name</label>
-        <table class="table mb-3">
-            <thead>
-                <tr class="border-bottom fs-6 fw-bolder text-gray-400">
-                    <th class="min-w-175px pb-2"><span class="badge badge-light-success mx-2">*</span></th>
-                    <th class="min-w-100px text-end pb-2">Quantity</th>
-                    <th class="min-w-60px text-end pb-2">Unitx</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="fw-bolder text-gray-700 fs-5 text-end">
-                    <td class="d-flex align-items-center pt-6">
-                        <i class="fa fa-genderless text-danger fs-2 me-2"></i>Weight :
-                    </td>
-                    <td class="pt-6 text-dark fw-boldest">
-                        @Model.Weight
-                    </td>
-                    <td><span class="badge badge-light-success mx-2">m3</span></td>
-                </tr>
-                <tr class="fw-bolder text-gray-700 fs-5 text-end">
-                    <td class="d-flex align-items-center">
-                        <i class="fa fa-genderless text-success fs-2 me-2"></i>Size :
-                    </td>
-                    <td class="fs-5 text-dark fw-boldest">
-                        @Model.Size
-                    </td>
-                    <td><span class="badge badge-light-success mx-2">t</span></td>
-                </tr>
-                <tr class="fw-bolder text-gray-700 fs-5 text-end">
-                    <td class="d-flex align-items-center">
-                        <i class="fa fa-genderless text-primary fs-2 me-2"></i>Price :
-                    </td>
-                    <td class="fs-5 text-dark fw-boldest">
-                        @Model.Price
-                    </td>
-                    <td><span class="badge badge-light-success mx-2">uzs</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div>
+
+    @*<div>
         <a asp-controller="orders" asp-action="update" asp-route-orderId="@Model.Id" class="btn btn-light-primary" role="dialog">Update</a>
         <div>
             <a class="btn btn-light-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_1" role="dialog">Delete</a>
@@ -77,5 +92,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>

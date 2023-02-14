@@ -63,6 +63,13 @@
                 <input type="text" asp-for=TransferLocation.Longitude class="form-control form-control-solid"/>
                 <span asp-validation-for="TransferLocation.Longitude" class="text-danger"></span>
             </div>
+
+            <label class="required form-label text-dark mt-5">Is Taken</label>
+            <select class="form-select form-select-solid" asp-for=IsTaken name="IsTaken" id="isTaken" aria-label="Select example">
+                <option value="true">Not Taken</option>
+                <option value="false">Taken</option>
+            </select>
+
             <div class="mt-8">
                 <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="UPDATE" />
             </div>

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Caravan.Web.Controllers;
 
 [Route("orders")]
-[Authorize(Roles = "User")]
+[Authorize]
 public class OrdersController : Controller
 {
     private readonly IOrderService _orderService;
