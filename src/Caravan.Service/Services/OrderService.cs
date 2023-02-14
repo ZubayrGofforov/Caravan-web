@@ -138,6 +138,7 @@ namespace Caravan.Service.Services
                 order.Price = updateDto.Price;
                 order.TakenLocationId = order.DeliveryLocationId;
                 order.TakenLocationId = order.TakenLocationId;
+                order.IsTaken = updateDto.IsTaken;
                 order.UpdatedAt = TimeHelper.GetCurrentServerTime();
 
                 if (updateDto.Image is not null)

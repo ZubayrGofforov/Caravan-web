@@ -31,5 +31,8 @@ namespace Caravan.Service.Dtos.Orders
 
         [Required]
         public LocationCreateDto TransferLocation { get; set; } = default!;
+
+        [Required]
+        public bool IsTaken { get; set; } = false;
     }
 }

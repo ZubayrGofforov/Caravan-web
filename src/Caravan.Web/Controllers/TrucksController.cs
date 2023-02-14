@@ -12,7 +12,7 @@ namespace Caravan.Web.Controllers;
 public class TrucksController : Controller
 {
     private readonly ITruckService _service;
-    private readonly int _pageSize = 20;
+    private readonly int _pageSize = 6;
     private readonly IMapper _mapper;
     public TrucksController(ITruckService service, IMapper _mapper)
     {

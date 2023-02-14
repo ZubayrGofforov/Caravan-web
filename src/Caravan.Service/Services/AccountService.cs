@@ -75,7 +75,7 @@ namespace Caravan.Service.Services
             if (admin is null)
             {
                 var user = await _repository.Users.FirstOrDefaultAsync(x => x.Email == loginDto.Email);
-                if(user is null) throw new StatusCodeException(HttpStatusCode.NotFound, " Not found wrong!");
+                if(user is null) throw new StatusCodeException(HttpStatusCode.NotFound, "Not found wrong!");
 
                 var hashResult = PasswordHasher.Verify(loginDto.Password, user.Salt, user.PasswordHash);
                 if (hashResult)
