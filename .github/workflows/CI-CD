@@ -1,0 +1,55 @@
+# This workflow for .NET project is CI and CD.
+# Not completely
+
+name: CI/CD AWS
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test --no-build --configuration Release --verbosity normal
+      
+    - name: Package Application
+      run: dotnet publish -c Release -o publish
+      
+    - name: Install AWS CLI
+      run: sudo apt-get update && sudo apt-get install awscli -y
+      
+    - name: Configure AWS CLI
+      env:
+        AWS_REGION: eu-central-1a
+        AWS_ACCESS_KEY_ID: "AKIA4YMZBTZ4DE77XLN2"
+        AWS_SECRET_ACCESS_KEY: "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"
+      run: |
+        aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}
+        aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}
+        aws configure set region ${AWS_REGION}
+        aws configure set output json
+ 
+    - name: Deploy to Lightsail
+      run: |
+        scp -i C:\LightsailDefaultKey-eu-central-1.pem -r dist/* ubuntu@3.76.99.135:/var/www/Caravan-Web
