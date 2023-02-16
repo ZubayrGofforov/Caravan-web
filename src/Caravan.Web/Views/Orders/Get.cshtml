@@ -56,35 +56,53 @@
                         </td>
                         <td><span class="badge badge-danger mx-2">s</span></td>
                     </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Owner :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest w-300px">
+                            @Model.User.FirstName <😎> @Model.User.Email
+                        </td>
+                        <td><span class="badge badge-danger mx-2">s</span></td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Address :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.LocationName
+                        </td>
+                        <td><span class="badge badge-danger mx-2"></span></td>
+                    </tr>
                 </tbody>
             </table>
-            <div class="flex-md-center">
-                <a asp-controller="orders" asp-action="update" asp-route-orderId="@Model.Id" class="btn btn-light-primary" role="dialog">Update</a>
-                <div>
-                    <a class="btn btn-light-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_1" role="dialog">Delete</a>
-                    <div class="modal fade" tabindex="-1" id="kt_modal_1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title">Delete order</h3>
+            <div class="row-cols-2">
+                <a asp-controller="orders" asp-action="update" asp-route-orderId="@Model.Id" class="btn btn-primary" role="dialog">Update</a>
+            </div>
+            <div class="row-cols-2">
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_1" role="dialog">Delete</a>
+                <div class="modal fade" tabindex="-1" id="kt_modal_1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Delete order</h3>
 
-                                    <!--begin::Close-->
-                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                                        <span class="svg-icon svg-icon-1"></span>
-                                    </div>
-                                    <!--end::Close-->
+                                <!--begin::Close-->
+                                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                    <span class="svg-icon svg-icon-1"></span>
                                 </div>
+                                <!--end::Close-->
+                            </div>
 
-                                <div class="modal-body">
-                                    <p>Do you want to delete "@Model.Name" ?</p>
-                                </div>
+                            <div class="modal-body">
+                                <p>Do you want to delete "@Model.Name" ?</p>
+                            </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                    <a asp-controller="orders" asp-action="Delete" asp-route-deleteOrderId="@Model.Id">
-                                        <button type="button" class="btn btn-light-danger">Delete</button>
-                                    </a>
-                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <a asp-controller="orders" asp-action="Delete" asp-route-deleteOrderId="@Model.Id">
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </a>
                             </div>
                         </div>
                     </div>
