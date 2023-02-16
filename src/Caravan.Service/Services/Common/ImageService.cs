@@ -7,8 +7,8 @@ namespace Caravan.Service.Services.Common
 {
     public class ImageService : IImageService
     {
-        private readonly string images = "media/images";
         private readonly string rootPath;
+        private readonly string images = "media/images";
         public ImageService(IWebHostEnvironment environment)
         {
             rootPath = environment.WebRootPath;
