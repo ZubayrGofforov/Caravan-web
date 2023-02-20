@@ -1,83 +1,122 @@
-﻿@using Caravan.Service.ViewModels;
+﻿@using Caravan.Service.Common.Helpers;
+@using Caravan.Service.ViewModels;
 @model TruckViewModel
 
-<div class="d-flex flex-row">
-    <div class="row-cols-2">
-        <img class="w-300px h-300px mb-3 card-rounded" src="~/@Model.ImagePath" alt="@Model.Name" />
-    </div>
-    <div class="row-cols-2 mx-10 bg-white pt-5 px-10 pb-10 pe-10">
-        <label class="fa fa-genderless fs-3 me-3">@Model.Name</label>
-        <table class="table mb-3">
-            <thead>
-                <tr class="border-bottom fs-6 fw-bolder text-gray-400">
-                    <th class="min-w-175px pb-2"><span class="badge badge-light-success mx-2">*</span></th>
-                    <th class="min-w-100px text-end pb-2">Quantity</th>
-                    <th class="min-w-60px text-end pb-2">Unitx</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="fw-bolder text-gray-700 fs-5 text-end">
-                    <td class="d-flex align-items-center pt-6">
-                        <i class="fa fa-genderless text-danger fs-2 me-2"></i>Max Load :
-                    </td>
-                    <td class="pt-6 text-dark fw-boldest">
-                        @Model.MaxLoad
-                    </td>
-                    <td><span class="badge badge-light-success mx-2">m3</span></td>
-                </tr>
-                <tr class="fw-bolder text-gray-700 fs-5 text-end">
-                    <td class="d-flex align-items-center">
-                        <i class="fa fa-genderless text-success fs-2 me-2"></i>Size :
-                    </td>
-                    <td class="fs-5 text-dark fw-boldest">
-                        @Model.Description
-                    </td>
-                    <td><span class="badge badge-light-success mx-2">t</span></td>
-                </tr>
-                <tr class="fw-bolder text-gray-700 fs-5 text-end">
-                    <td class="d-flex align-items-center">
-                        <i class="fa fa-genderless text-primary fs-2 me-2"></i>Price :
-                    </td>
-                    <td class="fs-5 text-dark fw-boldest">
-                        @Model.Description
-                    </td>
-                    <td><span class="badge badge-light-success mx-2">uzs</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="my-10 mx-10 me-10 d-flex flex-row align-items-md-center">
     <div>
-        <a asp-controller="trucks" asp-action="update" asp-route-truckid="@Model.Id" class="btn btn-active-light-primary" role="dialog">Update</a>
+        <img class="h-300px w-300px mb-3 card-rounded shadow1" src="~/@Model.ImagePath" alt="@Model.Name" />
     </div>
+    <div class="mx-10">
+        <div class="d-flex flex-stack flex-wrap">
+            <label class="fa fa-genderless h6 fs-1 ms-10">@Model.Name</label>
+            @if (Model.User.Id == HttpContextHelper.UserId)
+            {
+                <div class="my-2">
+                    <a asp-controller="trucks" asp-action="update" asp-route-truckId="@Model.Id" class="btn btn-sm btn-primary me-2">Update</a>
+                    <a data-bs-toggle="modal" data-bs-target="#kt_modal_1" role="dialog" class="btn btn-sm btn-danger">Delete</a>
+                    <div class="modal fade" tabindex="-1" id="kt_modal_1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Delete Truck</h3>
+                                    <!--begin::Close-->
+                                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="svg-icon svg-icon-1"></span>
+                                    </div>
+                                    <!--end::Close-->
+                                </div>
 
-    <div>
-        <a class="btn btn-active-light-danger" data-bs-toggle="modal" data-bs-target="#kt_modal_scrollable_2">
-            Delete
-        </a>
+                                <div class="modal-body">
+                                    <p>Do you want to delete "@Model.Name" ?</p>
+                                </div>
 
-        <div class="modal fade" tabindex="-1" id="kt_modal_scrollable_2">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Modal title</h5>
-
-                        <!--begin::Close-->
-                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
-                            <span class="svg-icon svg-icon-2x"></span>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                    <a asp-controller="trucks" asp-action="Delete" asp-route-deleteTruckId="@Model.Id">
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <!--end::Close-->
-                    </div>
-
-                    <div class="modal-body">
-                        <p> Do you want to delete @Model.Name ?</p>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                        <a asp-controller="trucks" asp-action="delete" asp-route-truckid="@Model.Id" class="btn btn-danger">Delete</a>
                     </div>
                 </div>
-            </div>
+            }
+            <table class="table mb-3 ms-10">
+                <thead>
+                    <tr class="border-bottom fs-6 fw-bolder text-gray-700">
+                        <th class="min-w-175px pb-2"><span class="badge badge-warning mx-2">*</span></th>
+                        <th class="min-w-100px text-end pb-2">Quantity</th>
+                        <th class="min-w-60px text-end pb-2">Unitx</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center pt-6">
+                            <i class="badge badge-dark fs-2 me-2"></i>Max Load :
+                        </td>
+                        <td class="pt-6 text-gray-500 fw-boldest">
+                            @Model.MaxLoad
+                        </td>
+                        <td>
+                            <span class="badge badge-warning mx-2">t</span>
+                        </td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Truck Number :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.TruckNumber
+                        </td>
+                        <td><span class="badge badge-warning mx-2">m3</span></td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Price :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.Description
+                        </td>
+                        <td><span class="badge badge-warning mx-2">uzs</span></td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Is Taken :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.IsEmpty
+                        </td>
+                        <td>
+                            @if (Model.IsEmpty)
+                            {
+                                <span class="badge badge-primary mx-2">Empty</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-danger mx-2">Busy</span>
+                            }
+                        </td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Owner :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest w-300px">
+                            @Model.User.FirstName <😎> @Model.User.Email
+                        </td>
+                        <td><span class="badge badge-warning mx-2">🐼</span></td>
+                    </tr>
+                    <tr class="fw-bolder text-gray-700 fs-5 text-end">
+                        <td class="d-flex align-items-center">
+                            <i class="badge badge-dark fs-2 me-2"></i>Address :
+                        </td>
+                        <td class="fs-5 text-gray-500 fw-boldest">
+                            @Model.LocationName
+                        </td>
+                        <td><span class="badge badge-warning mx-2">⚓</span></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
