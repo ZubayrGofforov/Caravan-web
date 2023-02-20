@@ -27,13 +27,14 @@ public class TrucksController : Controller
         return View("Index",trucks);
     }
 
-    [HttpGet("truckId")]
+    [HttpGet("{truckId}")]
     public async Task<ViewResult> GetAsync(long id)
     {
         var truck = await _service.GetAsync(id);
         ViewBag.HomeTitle = "Trucks / Get";
         return View(truck);
     }
+
     [HttpGet("OwnerTrucks")]
     public async Task<ViewResult> GetOwnerIdAsync(int page = 1)
     {
@@ -42,6 +43,7 @@ public class TrucksController : Controller
         ViewBag.ownerid = ownerid;
         return View("OwnerTrucks", trucks);
     }
+
     [HttpGet("Create")]
     public ViewResult Create()
     {
