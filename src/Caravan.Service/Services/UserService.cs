@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
-using Caravan.DataAccess.Migrations;
 using Caravan.Domain.Entities;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
@@ -56,8 +55,7 @@ namespace Caravan.Service.Services
             var temp = await unitOfWork.Users.FindByIdAsync(id);
             if (temp is not null)
                 return mapper.Map<UserViewModel>(temp);
-            else throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "User not found");
-
+            else throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
         }
 
         public async Task<UserViewModel> GetEmailAsync(string email)

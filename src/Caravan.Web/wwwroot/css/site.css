@@ -1291,6 +1291,11 @@ progress {
         flex: 0 0 auto;
         width: 25%;
     }
+    .box-user{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
 
     .col-md-4 {
         flex: 0 0 auto;

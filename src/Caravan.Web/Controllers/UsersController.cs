@@ -35,7 +35,8 @@ public class UsersController : Controller
             LastName = user.LastName,
             Address = user.Address,
             PhoneNumber = user.PhoneNumber,
-            Email = user.Email
+            Email = user.Email,
+            ImagePath = user.ImagePath
         };
         return View("../Users/Index", user);
     }
