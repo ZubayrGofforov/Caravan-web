@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Caravan.DataAccess.DbContexts;
 using Caravan.DataAccess.Interfaces.Common;
-using Caravan.DataAccess.Migrations;
 using Caravan.Domain.Entities;
 using Caravan.Service.Common.Exceptions;
 using Caravan.Service.Common.Helpers;
