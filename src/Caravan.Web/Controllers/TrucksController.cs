@@ -28,9 +28,9 @@ public class TrucksController : Controller
     }
 
     [HttpGet("{truckId}")]
-    public async Task<ViewResult> GetAsync(long id)
+    public async Task<ViewResult> GetAsync(long truckId)
     {
-        var truck = await _service.GetAsync(id);
+        var truck = await _service.GetAsync(truckId);
         ViewBag.HomeTitle = "Trucks / Get";
         return View(truck);
     }

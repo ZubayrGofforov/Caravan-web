@@ -26,5 +26,8 @@ namespace Caravan.Service.Dtos.Trucks
 
         [Required]
         public string TruckNumber { get; set; } = string.Empty;
+
+        [Required]
+        public bool IsEmpty { get; set; } = true;
     }
 }

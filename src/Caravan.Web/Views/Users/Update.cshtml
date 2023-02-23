@@ -28,6 +28,13 @@
                 <input type="text" asp-for=Address class="form-control form-control-solid"/>
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
+
+            <div class="mt-5">
+                <label class="required form-label text-dark">Image</label>
+                <input type="file" asp-for=Image class="form-control form-control-solid" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
             <div class="mt-8">
                 <input type="submit" class="btn btn-primary rounded hover-scale" style="width:100%;" value="UPDATE" />
             </div>
