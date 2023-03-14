@@ -2,8 +2,8 @@
 ===========
 
 Caravan  is the best open-source logistical desktop program. Mind Word is free, and it is one of the most popular MVC projects.
+![orders](https://user-images.githubusercontent.com/110013097/224921418-27d5f942-43f3-4ecf-8c9e-50d023c3c66b.png)
 
-![image](https://user-images.githubusercontent.com/114914445/224900003-9419515d-43cf-4bac-a17e-73582cfa9247.png)
 ### Key features ###
 
 * The product supported by the Caravan team.
@@ -26,7 +26,7 @@ Friendly members of the Caravan community will always help with advice and share
 
 Register Page | Login Page
 ----|------
-![regis](![image](https://user-images.githubusercontent.com/114914445/224903791-92ca27e1-39d8-4a05-938d-45e3fba3df85.png)) | ![login](![image](https://user-images.githubusercontent.com/114914445/224903354-6e628992-ae7b-4caa-af41-d39e3c744241.png))
+![register](https://user-images.githubusercontent.com/110013097/224924669-256c4f79-6692-4ecb-bb76-9dc616cb7eb5.png) | ![login](https://user-images.githubusercontent.com/110013097/224924747-d238c224-ddd5-4f62-91fe-35efcb38bf34.png)
 
 ## Main Components ##
 
@@ -34,9 +34,6 @@ Register Page | Login Page
 * If home page choosen a page will appear in which the statistics of the user are shown according their performance. 
 * In the Title part, there are the list of the titles that the user has created. 
 
-Home | Title
-----|------
-![image](https://user-images.githubusercontent.com/114914445/224908521-58c77aff-abcc-410c-ab05-229c494f4e5b.png)
 
 * In the truck page, there are the list of trucks and information about truck owner as well as location, status of trucks. 
 * if you press any truck you can get full information about truck
@@ -46,15 +43,19 @@ Home | Title
 * If the user wants to modify their email, image or password there is the possiblity to do it in the Settings part.
 
 
-Truck 
-----|------
-!(![image](https://user-images.githubusercontent.com/114914445/224905392-83b3fd27-9912-414e-88ba-e10b14c13bd4.png)) | ![image](https://user-images.githubusercontent.com/114914445/224905519-7da637c6-78ef-44eb-8dfd-6b97806a04da.png)
-Orders 
-----|------
-![image](https://user-images.githubusercontent.com/114914445/224905679-c00eb544-3ab2-4032-8c1d-6441a3a9b160.png) | ![image](https://user-images.githubusercontent.com/114914445/224905812-0511736b-d4c1-4f1b-911a-1d2145115055.png)
+Truck | Get
+------|------
+![trucks](https://user-images.githubusercontent.com/110013097/224926727-7ff09262-8202-4e6e-acb4-8fcd7fbb653c.png) | ![truckget](https://user-images.githubusercontent.com/110013097/224927631-2ca129a5-1c6e-4a50-8707-1481e61d4eaf.png)
 
-Settings 
-![image](https://user-images.githubusercontent.com/114914445/224908110-538bf661-15cc-4ba9-8f19-4a8b76d92c9e.png)
+
+Orders | Get
+------|------
+![orders](https://user-images.githubusercontent.com/110013097/224928556-c3bfbdb8-c27a-4357-bc8b-c3bf3e78b5c0.png) | ![orderGet](https://user-images.githubusercontent.com/110013097/224928952-35cbe3be-e21c-4e1f-90e3-09a461c9e845.png)
+
+Profile | Settings 
+------|------
+![profile](https://user-images.githubusercontent.com/110013097/224931366-7af62b1a-e0b3-43c0-a923-a481fd36372f.png) | ![userUpdate](https://user-images.githubusercontent.com/110013097/224929966-324ef152-dc43-4a34-bf1d-d14e2ff350b3.png)
+
 
 ### Built with ###
 .NET CORE, WPF, SQL Lite, ASP.NET
