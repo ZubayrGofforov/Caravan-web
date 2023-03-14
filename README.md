@@ -2,8 +2,7 @@
 ===========
 
 Caravan  is the best open-source logistical desktop program. Mind Word is free, and it is one of the most popular MVC projects.
-
-![image](https://user-images.githubusercontent.com/114914445/224900003-9419515d-43cf-4bac-a17e-73582cfa9247.png)
+![image](https://user-images.githubusercontent.com/114914445/224909644-7276c0e8-44ac-4123-9d7e-1921796bec5f.png)
 ### Key features ###
 
 * The product supported by the Caravan team.
